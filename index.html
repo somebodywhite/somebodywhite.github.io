@@ -1,1 +1,348 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+  <title>New York Guardians ESG</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background: #080808;
+      color: white;
+      line-height: 1.6;
+    }
+
+    header {
+      background: linear-gradient(135deg, #050505, #101c3d);
+      border-bottom: 3px solid #d4af37;
+      padding: 25px 20px;
+      text-align: center;
+    }
+
+    header h1 {
+      color: #d4af37;
+      font-size: 40px;
+      letter-spacing: 3px;
+    }
+
+    header p {
+      color: #ffffff;
+      margin-top: 5px;
+      letter-spacing: 2px;
+    }
+
+    nav {
+      margin-top: 20px;
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      margin: 0 12px;
+      font-weight: bold;
+    }
+
+    nav a:hover {
+      color: #d4af37;
+    }
+
+    .hero {
+      min-height: 450px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 40px 20px;
+      background:
+        linear-gradient(rgba(0,0,0,.65), rgba(0,0,0,.85)),
+        linear-gradient(135deg, #123b8b, #050505);
+    }
+
+    .hero h2 {
+      font-size: 55px;
+      color: #d4af37;
+      text-transform: uppercase;
+    }
+
+    .hero p {
+      font-size: 22px;
+      max-width: 700px;
+      margin-top: 15px;
+    }
+
+    .button {
+      display: inline-block;
+      margin-top: 25px;
+      padding: 12px 25px;
+      background: #d4af37;
+      color: black;
+      text-decoration: none;
+      font-weight: bold;
+      border-radius: 5px;
+    }
+
+    section {
+      max-width: 1100px;
+      margin: auto;
+      padding: 60px 20px;
+    }
+
+    section h2 {
+      color: #d4af37;
+      font-size: 32px;
+      margin-bottom: 25px;
+      border-bottom: 2px solid #123b8b;
+      padding-bottom: 10px;
+    }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+      gap: 20px;
+    }
+
+    .card {
+      background: #151515;
+      border: 1px solid #333;
+      border-top: 4px solid #d4af37;
+      padding: 25px;
+      border-radius: 8px;
+    }
+
+    .card h3 {
+      color: #d4af37;
+      margin-bottom: 8px;
+    }
+
+    .score {
+      font-size: 28px;
+      font-weight: bold;
+      margin: 10px 0;
+    }
+
+    .player {
+      text-align: center;
+    }
+
+    .player-number {
+      font-size: 50px;
+      font-weight: bold;
+      color: #d4af37;
+    }
+
+    .socials a {
+      display: inline-block;
+      margin: 8px;
+      color: #73a7ff;
+      text-decoration: none;
+    }
+
+    footer {
+      background: #050505;
+      border-top: 2px solid #d4af37;
+      text-align: center;
+      padding: 30px 20px;
+      color: #aaa;
+    }
+
+    @media (max-width: 600px) {
+      header h1 {
+        font-size: 28px;
+      }
+
+      .hero h2 {
+        font-size: 38px;
+      }
+
+      nav a {
+        display: inline-block;
+        margin: 6px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<header>
+  <h1>NEW YORK GUARDIANS</h1>
+  <p>ESG FOOTBALL</p>
+
+  <nav>
+    <a href="#home">Home</a>
+    <a href="#schedule">Schedule</a>
+    <a href="#roster">Roster</a>
+    <a href="#stats">Stats</a>
+    <a href="#media">Media</a>
+  </nav>
+</header>
+
+
+<div class="hero" id="home">
+  <h2>Protect The City</h2>
+
+  <p>
+    Official home of the New York Guardians.
+    Schedule, scores, roster, player profiles,
+    statistics and team media.
+  </p>
+
+  <a class="button" href="#roster">View The Roster</a>
+</div>
+
+
+<section id="schedule">
+
+  <h2>Schedule & Results</h2>
+
+  <div class="cards">
+
+    <div class="card">
+      <h3>Latest Result</h3>
+      <div class="score">Guardians 28</div>
+      <div class="score">Tritons 0</div>
+      <p>FINAL</p>
+    </div>
+
+    <div class="card">
+      <h3>Next Game</h3>
+      <div class="score">Guardians vs TBD</div>
+      <p>Date: Coming Soon</p>
+      <p>Time: TBD</p>
+    </div>
+
+    <div class="card">
+      <h3>Season Record</h3>
+      <div class="score">0 - 0</div>
+      <p>Update this with the current record.</p>
+    </div>
+
+  </div>
+
+</section>
+
+
+<section id="roster">
+
+  <h2>Roster</h2>
+
+  <div class="cards">
+
+    <div class="card player">
+
+      <div class="player-number">#11</div>
+
+      <h3>Som3body_white</h3>
+
+      <p>WR / DB</p>
+
+      <p>
+        New York Guardians
+      </p>
+
+      <div class="socials">
+        <a href="#">Twitch</a>
+        <a href="#">YouTube</a>
+        <a href="#">X</a>
+        <a href="#">Instagram</a>
+      </div>
+
+    </div>
+
+
+    <div class="card player">
+
+      <div class="player-number">#00</div>
+
+      <h3>Player Two</h3>
+
+      <p>Position</p>
+
+      <div class="socials">
+        <a href="#">Twitch</a>
+        <a href="#">X</a>
+      </div>
+
+    </div>
+
+
+    <div class="card player">
+
+      <div class="player-number">#00</div>
+
+      <h3>Player Three</h3>
+
+      <p>Position</p>
+
+      <div class="socials">
+        <a href="#">Twitch</a>
+        <a href="#">X</a>
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<section id="stats">
+
+  <h2>Player Stats</h2>
+
+  <div class="cards">
+
+    <div class="card">
+      <h3>Som3body_white</h3>
+
+      <p>Receptions: 10</p>
+      <p>Receiving Yards: 410</p>
+      <p>Receiving TDs: 7</p>
+      <p>Interceptions: 3</p>
+    </div>
+
+  </div>
+
+</section>
+
+
+<section id="media">
+
+  <h2>Guardians Media</h2>
+
+  <div class="cards">
+
+    <div class="card">
+      <h3>Game Highlights</h3>
+      <p>
+        YouTube videos and Twitch highlights will go here.
+      </p>
+    </div>
+
+    <div class="card">
+      <h3>Team Socials</h3>
+      <p>
+        Links to the Guardians social accounts will go here.
+      </p>
+    </div>
+
+  </div>
+
+</section>
+
+
+<footer>
+  <p>New York Guardians • ESG Football</p>
+</footer>
+
+</body>
+</html>
