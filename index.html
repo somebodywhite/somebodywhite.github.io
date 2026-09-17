@@ -8,7 +8,8 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Oswald:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;500;600;700&family=Black+Ops+One&family=Teko:wght@400;500;600;700&display=swap" rel="stylesheet">
 
 <style>
 
@@ -34,7 +35,7 @@ html{
 body{
   background:#030405;
   color:white;
-  font-family:"Oswald",sans-serif;
+  font-family:"Barlow Condensed",sans-serif;
   overflow-x:hidden;
 }
 
@@ -43,7 +44,7 @@ a{
   color:inherit;
 }
 
-/* ---------- NAV ---------- */
+/* NAVIGATION */
 
 header{
   position:fixed;
@@ -66,9 +67,9 @@ nav{
 }
 
 .brand{
-  font-family:"Bebas Neue";
-  font-size:30px;
-  letter-spacing:4px;
+  font-family:"Black Ops One",sans-serif;
+  font-size:22px;
+  letter-spacing:2px;
 }
 
 .brand span{
@@ -81,7 +82,8 @@ nav{
 }
 
 .menu a{
-  font-size:13px;
+  font-size:15px;
+  font-weight:600;
   letter-spacing:2px;
   text-transform:uppercase;
   position:relative;
@@ -103,7 +105,7 @@ nav{
 }
 
 
-/* ---------- HERO ---------- */
+/* HERO */
 
 .hero{
   min-height:100vh;
@@ -117,15 +119,13 @@ nav{
     linear-gradient(120deg,#020304 15%,#0a0e15 65%,#020304 100%);
 }
 
-/* giant moving word */
-
 .background-word{
   position:absolute;
   left:-4%;
   bottom:2%;
 
-  font-family:"Bebas Neue";
-  font-size:22vw;
+  font-family:"Black Ops One",sans-serif;
+  font-size:17vw;
   color:rgba(255,255,255,.018);
 
   letter-spacing:10px;
@@ -135,11 +135,14 @@ nav{
 }
 
 @keyframes drift{
-  from{ transform:translateX(-2%); }
-  to{ transform:translateX(4%); }
-}
+  from{
+    transform:translateX(-2%);
+  }
 
-/* animated light */
+  to{
+    transform:translateX(4%);
+  }
+}
 
 .light{
   position:absolute;
@@ -161,7 +164,8 @@ nav{
   }
 }
 
-/* city skyline */
+
+/* CITY SKYLINE */
 
 .skyline{
   position:absolute;
@@ -212,7 +216,8 @@ nav{
 .b8{height:64%}
 .b9{height:42%}
 
-/* hero content */
+
+/* HERO CONTENT */
 
 .hero-content{
   width:100%;
@@ -228,16 +233,18 @@ nav{
   color:var(--gold);
   letter-spacing:5px;
   text-transform:uppercase;
-  font-size:13px;
+  font-size:15px;
+  font-weight:600;
 
-  margin-bottom:18px;
+  margin-bottom:20px;
 }
 
 .hero h1{
-  font-family:"Bebas Neue";
-  font-size:clamp(90px,13vw,190px);
-  line-height:.72;
-  letter-spacing:2px;
+  font-family:"Black Ops One",sans-serif;
+  font-size:clamp(65px,10vw,145px);
+  line-height:.85;
+  letter-spacing:1px;
+  text-transform:uppercase;
 }
 
 .hero h1 span{
@@ -245,12 +252,13 @@ nav{
   display:block;
 
   text-shadow:
-    0 0 45px rgba(213,173,85,.2);
+    0 0 45px rgba(213,173,85,.22);
 }
 
 .tagline{
-  font-size:22px;
-  letter-spacing:4px;
+  font-family:"Teko",sans-serif;
+  font-size:31px;
+  letter-spacing:3px;
   text-transform:uppercase;
 
   margin-top:32px;
@@ -259,19 +267,20 @@ nav{
 }
 
 .hero-buttons{
-  margin-top:38px;
+  margin-top:35px;
 
   display:flex;
   gap:14px;
 }
 
 .btn{
-  padding:15px 27px;
+  padding:14px 27px;
 
   border:1px solid var(--gold);
 
   letter-spacing:2px;
   text-transform:uppercase;
+  font-weight:700;
 
   transition:.3s;
 }
@@ -283,11 +292,13 @@ nav{
 
 .btn:hover{
   transform:translateY(-5px);
-  box-shadow:0 15px 45px rgba(213,173,85,.22);
+
+  box-shadow:
+    0 15px 45px rgba(213,173,85,.22);
 }
 
 
-/* ---------- MOVING BAR ---------- */
+/* MOVING BAR */
 
 .marquee{
   background:var(--gold);
@@ -296,11 +307,12 @@ nav{
   overflow:hidden;
   white-space:nowrap;
 
-  font-family:"Bebas Neue";
-  letter-spacing:4px;
+  font-family:"Teko",sans-serif;
+  letter-spacing:3px;
 
-  font-size:23px;
-  padding:12px 0;
+  font-size:27px;
+  font-weight:600;
+  padding:8px 0;
 }
 
 .marquee div{
@@ -317,7 +329,7 @@ nav{
 }
 
 
-/* ---------- GENERAL ---------- */
+/* GENERAL */
 
 main{
   max-width:1300px;
@@ -335,23 +347,24 @@ section{
   text-transform:uppercase;
   letter-spacing:5px;
 
-  font-size:12px;
+  font-size:14px;
+  font-weight:600;
 }
 
 .title{
-  font-family:"Bebas Neue";
+  font-family:"Black Ops One",sans-serif;
 
-  font-size:clamp(55px,8vw,100px);
+  font-size:clamp(42px,6vw,72px);
 
-  line-height:.9;
+  line-height:1;
 
-  letter-spacing:2px;
+  letter-spacing:1px;
 
-  margin:7px 0 40px;
+  margin:12px 0 40px;
 }
 
 
-/* ---------- GAME SECTION ---------- */
+/* GAME SECTION */
 
 .games{
   display:grid;
@@ -395,14 +408,15 @@ section{
   color:var(--gold);
 
   letter-spacing:5px;
-
-  font-size:13px;
+  font-size:15px;
+  font-weight:700;
 }
 
 .match{
-  font-family:"Bebas Neue";
-  font-size:65px;
-  line-height:.95;
+  font-family:"Teko",sans-serif;
+  font-size:76px;
+  line-height:.8;
+  font-weight:600;
 }
 
 .match strong{
@@ -410,14 +424,23 @@ section{
 }
 
 .final-score{
-  font-family:"Bebas Neue";
+  font-family:"Teko",sans-serif;
 
   position:absolute;
-  top:28px;
+  top:20px;
   right:35px;
 
-  font-size:80px;
-  color:rgba(213,173,85,.7);
+  font-size:95px;
+  line-height:1;
+  font-weight:600;
+
+  color:rgba(213,173,85,.76);
+}
+
+.game-main p{
+  color:#aaa;
+  letter-spacing:2px;
+  margin-top:16px;
 }
 
 .side-games{
@@ -451,19 +474,21 @@ section{
   letter-spacing:3px;
   text-transform:uppercase;
 
-  font-size:12px;
+  font-size:13px;
+  font-weight:700;
 }
 
 .small-game h3{
-  font-family:"Bebas Neue";
+  font-family:"Teko",sans-serif;
 
-  font-size:42px;
+  font-size:49px;
+  line-height:1;
 
-  margin-top:8px;
+  margin-top:10px;
 }
 
 
-/* ---------- ROSTER ---------- */
+/* ROSTER */
 
 .roster{
   display:flex;
@@ -513,13 +538,16 @@ section{
 .player-number{
   position:absolute;
   right:15px;
-  top:0px;
+  top:-12px;
 
-  font-family:"Bebas Neue";
+  font-family:"Teko",sans-serif;
 
-  font-size:150px;
+  font-size:175px;
+  font-weight:600;
 
-  color:rgba(213,173,85,.11);
+  color:rgba(213,173,85,.12);
+
+  line-height:1;
 }
 
 .player-silhouette{
@@ -571,13 +599,14 @@ section{
 }
 
 .player-info h3{
-  font-family:"Bebas Neue";
+  font-family:"Teko",sans-serif;
 
-  font-size:39px;
+  font-size:48px;
+  line-height:.9;
 
   color:var(--gold);
 
-  letter-spacing:2px;
+  letter-spacing:1px;
 }
 
 .player-info p{
@@ -585,7 +614,7 @@ section{
 
   letter-spacing:3px;
 
-  font-size:12px;
+  font-size:13px;
 
   text-transform:uppercase;
 }
@@ -602,7 +631,8 @@ section{
 
   border:1px solid rgba(213,173,85,.35);
 
-  font-size:11px;
+  font-size:12px;
+  font-weight:600;
 
   transition:.2s;
 }
@@ -613,7 +643,7 @@ section{
 }
 
 
-/* ---------- STATS ---------- */
+/* STATS */
 
 .stats{
   display:grid;
@@ -646,11 +676,12 @@ section{
 }
 
 .stat-value{
-  font-family:"Bebas Neue";
+  font-family:"Teko",sans-serif;
 
-  font-size:85px;
+  font-size:100px;
+  font-weight:600;
 
-  line-height:1;
+  line-height:.75;
 
   color:var(--gold);
 }
@@ -662,13 +693,14 @@ section{
 
   letter-spacing:3px;
 
-  font-size:11px;
+  font-size:12px;
+  font-weight:600;
 
-  margin-top:8px;
+  margin-top:18px;
 }
 
 
-/* ---------- MEDIA ---------- */
+/* MEDIA */
 
 .media-grid{
   display:grid;
@@ -709,15 +741,16 @@ section{
 }
 
 .media h3{
-  font-family:"Bebas Neue";
+  font-family:"Teko",sans-serif;
 
-  font-size:40px;
+  font-size:50px;
+  line-height:.9;
 
   color:var(--gold);
 }
 
 
-/* ---------- FOOTER ---------- */
+/* FOOTER */
 
 footer{
   margin-top:120px;
@@ -729,20 +762,22 @@ footer{
   padding:50px 20px;
 
   color:#666;
+
+  letter-spacing:2px;
 }
 
 footer strong{
   color:var(--gold);
 
-  font-family:"Bebas Neue";
+  font-family:"Black Ops One",sans-serif;
 
-  letter-spacing:4px;
+  letter-spacing:2px;
 
-  font-size:25px;
+  font-size:21px;
 }
 
 
-/* ---------- REVEAL ---------- */
+/* SCROLL ANIMATION */
 
 .reveal{
   opacity:0;
@@ -759,7 +794,7 @@ footer strong{
 }
 
 
-/* ---------- MOBILE ---------- */
+/* MOBILE */
 
 @media(max-width:800px){
 
@@ -768,11 +803,11 @@ footer strong{
   }
 
   .hero h1{
-    font-size:95px;
+    font-size:65px;
   }
 
   .tagline{
-    font-size:16px;
+    font-size:24px;
   }
 
   .skyline{
@@ -801,6 +836,10 @@ footer strong{
     grid-row:auto;
   }
 
+  .title{
+    font-size:42px;
+  }
+
 }
 
 </style>
@@ -808,6 +847,7 @@ footer strong{
 
 
 <body>
+
 
 <header>
 
@@ -830,6 +870,7 @@ NY <span>GUARDIANS</span>
 </nav>
 
 </header>
+
 
 
 <section class="hero" id="home">
@@ -863,17 +904,12 @@ Brooklyn • New York
 </div>
 
 <h1>
-
 New York
-
-<span>
-Guardians
-</span>
-
+<span>Guardians</span>
 </h1>
 
 <div class="tagline">
-Built under city lights. Protect the city.
+Built Under City Lights • Protect The City
 </div>
 
 
@@ -894,6 +930,7 @@ Game Schedule
 </section>
 
 
+
 <div class="marquee">
 
 <div>
@@ -905,6 +942,7 @@ NEW YORK GUARDIANS • ESG FOOTBALL • PROTECT THE CITY • BROOKLYN NIGHTS •
 </div>
 
 </div>
+
 
 
 <main>
@@ -922,6 +960,7 @@ Game Day
 
 
 <div class="games">
+
 
 <div class="game-main">
 
@@ -1008,8 +1047,7 @@ Guardians Roster
 11
 </div>
 
-<div class="player-silhouette">
-</div>
+<div class="player-silhouette"></div>
 
 <div class="player-info">
 
@@ -1042,8 +1080,7 @@ WR / DB
 00
 </div>
 
-<div class="player-silhouette">
-</div>
+<div class="player-silhouette"></div>
 
 <div class="player-info">
 
@@ -1067,8 +1104,7 @@ Position
 00
 </div>
 
-<div class="player-silhouette">
-</div>
+<div class="player-silhouette"></div>
 
 <div class="player-info">
 
@@ -1092,8 +1128,7 @@ Position
 00
 </div>
 
-<div class="player-silhouette">
-</div>
+<div class="player-silhouette"></div>
 
 <div class="player-info">
 
@@ -1129,10 +1164,10 @@ Som3body_white
 
 <div class="stats">
 
+
 <div class="stat">
 
-<div class="stat-value"
-data-target="10">
+<div class="stat-value" data-target="10">
 0
 </div>
 
@@ -1145,8 +1180,7 @@ Receptions
 
 <div class="stat">
 
-<div class="stat-value"
-data-target="410">
+<div class="stat-value" data-target="410">
 0
 </div>
 
@@ -1159,8 +1193,7 @@ Receiving Yards
 
 <div class="stat">
 
-<div class="stat-value"
-data-target="7">
+<div class="stat-value" data-target="7">
 0
 </div>
 
@@ -1173,8 +1206,7 @@ Touchdowns
 
 <div class="stat">
 
-<div class="stat-value"
-data-target="3">
+<div class="stat-value" data-target="3">
 0
 </div>
 
@@ -1183,6 +1215,7 @@ Interceptions
 </div>
 
 </div>
+
 
 </div>
 
@@ -1202,6 +1235,7 @@ Guardians Media
 
 
 <div class="media-grid">
+
 
 <div class="media">
 
@@ -1229,6 +1263,7 @@ Team Socials
 
 </div>
 
+
 </div>
 
 </section>
@@ -1237,13 +1272,14 @@ Team Socials
 </main>
 
 
+
 <footer>
 
 <strong>
 NEW YORK GUARDIANS
 </strong>
 
-<br>
+<br><br>
 
 ESG Football • Protect The City
 
@@ -1253,7 +1289,7 @@ ESG Football • Protect The City
 
 <script>
 
-/* scroll animations */
+/* SCROLL ANIMATIONS */
 
 const reveals =
 document.querySelectorAll(".reveal");
@@ -1280,7 +1316,8 @@ observer.observe(el)
 );
 
 
-/* animated statistics */
+
+/* ANIMATED STATS */
 
 const counters =
 document.querySelectorAll(".stat-value");
@@ -1310,15 +1347,18 @@ const target =
 let value = 0;
 
 const step =
-Math.max(1,
-Math.ceil(target / 45));
+Math.max(
+1,
+Math.ceil(target / 45)
+);
 
 const update = () => {
 
 value += step;
 
-if(value > target)
+if(value > target){
 value = target;
+}
 
 counter.textContent =
 value;
