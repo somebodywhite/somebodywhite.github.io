@@ -1,40 +1,41 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
   <title>New York Guardians | ESG Football</title>
 
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Oswald:wght@400;500;600;700&display=swap" rel="stylesheet">
+
   <style>
+    :root {
+      --black: #050505;
+      --dark: #0b0c0f;
+      --panel: #111317;
+      --gold: #d6ad52;
+      --gold-dark: #8d6721;
+      --white: #f4f4f4;
+      --gray: #a4a4a4;
+    }
+
     * {
       box-sizing: border-box;
       margin: 0;
       padding: 0;
+    }
+
+    html {
       scroll-behavior: smooth;
     }
 
-    :root {
-      --bg: #050608;
-      --bg2: #0a0d12;
-      --panel: rgba(12, 14, 18, 0.85);
-      --panel2: rgba(18, 21, 27, 0.92);
-      --gold: #c8a24a;
-      --gold2: #8b6a23;
-      --text: #f4f4f4;
-      --muted: #a9adb8;
-      --line: rgba(200, 162, 74, 0.22);
-      --blue: #18263f;
-    }
-
     body {
-      font-family: Arial, Helvetica, sans-serif;
-      background:
-        radial-gradient(circle at top left, rgba(200,162,74,0.08), transparent 30%),
-        radial-gradient(circle at top right, rgba(255,255,255,0.03), transparent 20%),
-        linear-gradient(to bottom, rgba(5,6,8,0.94), rgba(5,6,8,0.98)),
-        #050608;
-      color: var(--text);
-      line-height: 1.5;
+      background: var(--black);
+      color: var(--white);
+      font-family: "Oswald", sans-serif;
+      overflow-x: hidden;
     }
 
     a {
@@ -42,74 +43,67 @@
       text-decoration: none;
     }
 
-    .site-wrap {
-      position: relative;
-      overflow: hidden;
-    }
-
-    /* subtle gritty overlay */
-    .site-wrap::before {
+    /* gritty overlay */
+    body::before {
       content: "";
       position: fixed;
       inset: 0;
       pointer-events: none;
-      opacity: 0.08;
+      z-index: 999;
+      opacity: .08;
+
       background-image:
-        linear-gradient(rgba(255,255,255,0.04) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
-      background-size: 3px 3px, 4px 4px;
-      mix-blend-mode: screen;
+        repeating-linear-gradient(
+          0deg,
+          transparent 0,
+          transparent 2px,
+          rgba(255,255,255,.08) 3px
+        );
     }
 
-    /* NAV */
+    /* NAVIGATION */
+
     header {
-      position: sticky;
+      position: fixed;
       top: 0;
-      z-index: 50;
-      backdrop-filter: blur(8px);
-      background: rgba(5, 6, 8, 0.88);
-      border-bottom: 1px solid rgba(200,162,74,0.15);
+      left: 0;
+      width: 100%;
+      z-index: 100;
+
+      background: rgba(5,5,5,.82);
+      backdrop-filter: blur(12px);
+
+      border-bottom: 1px solid rgba(214,173,82,.18);
     }
 
     .nav {
-      max-width: 1200px;
+      max-width: 1250px;
       margin: auto;
-      padding: 18px 20px;
+
       display: flex;
-      justify-content: space-between;
       align-items: center;
-      gap: 20px;
+      justify-content: space-between;
+
+      padding: 16px 25px;
     }
 
-    .logo-block h1 {
-      font-size: 28px;
-      letter-spacing: 2px;
-      color: var(--gold);
-      text-transform: uppercase;
-      line-height: 1;
-    }
-
-    .logo-block p {
-      color: var(--muted);
-      font-size: 12px;
+    .logo {
+      font-family: "Bebas Neue";
+      font-size: 29px;
       letter-spacing: 3px;
-      margin-top: 4px;
-      text-transform: uppercase;
+      color: var(--gold);
     }
 
     nav {
       display: flex;
-      flex-wrap: wrap;
-      gap: 18px;
+      gap: 25px;
     }
 
     nav a {
-      color: #e8e8e8;
       font-size: 14px;
-      font-weight: bold;
-      letter-spacing: 1px;
       text-transform: uppercase;
-      transition: 0.25s ease;
+      letter-spacing: 2px;
+      transition: .25s;
     }
 
     nav a:hover {
@@ -117,691 +111,1016 @@
     }
 
     /* HERO */
+
     .hero {
-      min-height: 88vh;
+      min-height: 100vh;
+
       display: flex;
       align-items: center;
+
       position: relative;
-      padding: 60px 20px;
+
       background:
-        linear-gradient(to right, rgba(5,6,8,0.9), rgba(5,6,8,0.55)),
-        radial-gradient(circle at center, rgba(200,162,74,0.08), transparent 35%),
-        linear-gradient(135deg, #09101a 0%, #050608 55%, #11161f 100%);
+        linear-gradient(
+          90deg,
+          rgba(0,0,0,.95),
+          rgba(0,0,0,.58),
+          rgba(0,0,0,.8)
+        ),
+
+        url("https://images.unsplash.com/photo-1522083165195-3424ed129620?auto=format&fit=crop&w=1800&q=85");
+
+      background-size: cover;
+      background-position: center;
+
+      overflow: hidden;
     }
 
-    .hero::before {
+    .hero::after {
       content: "";
+
       position: absolute;
       inset: 0;
+
       background:
-        linear-gradient(to top, rgba(5,6,8,1), rgba(5,6,8,0.35)),
-        url("https://images.unsplash.com/photo-1514565131-fce0801e5785?auto=format&fit=crop&w=1600&q=80") center/cover no-repeat;
-      opacity: 0.28;
-      mix-blend-mode: screen;
+        radial-gradient(
+          circle at 65% 45%,
+          rgba(214,173,82,.15),
+          transparent 32%
+        );
+
+      pointer-events: none;
     }
 
     .hero-inner {
-      max-width: 1200px;
-      width: 100%;
-      margin: auto;
       position: relative;
       z-index: 2;
-      display: grid;
-      grid-template-columns: 1.2fr 0.8fr;
-      gap: 30px;
-      align-items: center;
+
+      width: 100%;
+      max-width: 1250px;
+
+      margin: auto;
+      padding: 150px 25px 80px;
     }
 
-    .hero-left .eyebrow {
+    .city-tag {
       display: inline-block;
-      margin-bottom: 14px;
+
+      padding: 8px 14px;
+
+      border-left: 4px solid var(--gold);
+
       color: var(--gold);
-      text-transform: uppercase;
-      letter-spacing: 3px;
+
+      letter-spacing: 4px;
       font-size: 13px;
-      border: 1px solid rgba(200,162,74,0.2);
-      padding: 8px 12px;
-      background: rgba(200,162,74,0.06);
-    }
 
-    .hero-left h2 {
-      font-size: clamp(44px, 7vw, 92px);
-      line-height: 0.95;
       text-transform: uppercase;
-      letter-spacing: 2px;
-      margin-bottom: 16px;
+
+      margin-bottom: 20px;
     }
 
-    .hero-left h2 .gold {
-      color: var(--gold);
+    .hero h1 {
+      font-family: "Bebas Neue";
+
+      font-size: clamp(75px, 12vw, 165px);
+
+      line-height: .78;
+
+      letter-spacing: 3px;
+
+      text-transform: uppercase;
+
+      max-width: 850px;
+    }
+
+    .hero h1 span {
       display: block;
-      text-shadow: 0 0 20px rgba(200,162,74,0.15);
+
+      color: var(--gold);
+
+      text-shadow:
+        0 0 30px rgba(214,173,82,.17);
     }
 
-    .hero-left p {
-      max-width: 700px;
-      color: #d6d8de;
-      font-size: 19px;
-      margin-bottom: 28px;
+    .hero-subtitle {
+      font-size: 21px;
+      color: #d0d0d0;
+
+      max-width: 620px;
+
+      margin-top: 30px;
+
+      line-height: 1.7;
     }
 
     .hero-buttons {
       display: flex;
+      gap: 15px;
       flex-wrap: wrap;
-      gap: 14px;
+
+      margin-top: 35px;
     }
 
-    .btn {
-      display: inline-block;
-      padding: 14px 22px;
-      border-radius: 4px;
-      font-weight: bold;
-      letter-spacing: 1px;
-      text-transform: uppercase;
-      transition: 0.25s ease;
+    .button {
+      padding: 14px 26px;
+
       border: 1px solid var(--gold);
+
+      text-transform: uppercase;
+      letter-spacing: 2px;
+
+      font-weight: 700;
+
+      transition: all .3s;
     }
 
-    .btn.gold {
-      background: linear-gradient(180deg, #d8b25a, #a27720);
-      color: #111;
-      box-shadow: 0 8px 24px rgba(200,162,74,0.14);
+    .button.gold {
+      background: var(--gold);
+      color: #080808;
     }
 
-    .btn.gold:hover {
-      transform: translateY(-2px);
+    .button.dark {
+      background: rgba(0,0,0,.55);
     }
 
-    .btn.dark {
-      background: rgba(12,14,18,0.75);
-      color: #f3f3f3;
+    .button:hover {
+      transform: translateY(-4px);
+
+      box-shadow:
+        0 10px 35px rgba(214,173,82,.20);
     }
 
-    .btn.dark:hover {
-      background: rgba(25,28,35,0.92);
-    }
+    /* gold skyline line */
 
-    .hero-right {
-      display: flex;
-      justify-content: center;
-    }
+    .city-line {
+      position: absolute;
 
-    .quote-box {
+      bottom: 0;
+      left: 0;
+
       width: 100%;
-      max-width: 360px;
-      background: rgba(12,14,18,0.72);
-      border: 1px solid rgba(200,162,74,0.16);
-      border-left: 4px solid var(--gold);
-      padding: 24px;
-      box-shadow: 0 20px 40px rgba(0,0,0,0.25);
+      height: 5px;
+
+      background:
+        linear-gradient(
+          90deg,
+          transparent,
+          var(--gold),
+          transparent
+        );
+
+      box-shadow:
+        0 0 25px rgba(214,173,82,.7);
     }
 
-    .quote-box h3 {
-      color: var(--gold);
-      text-transform: uppercase;
-      letter-spacing: 2px;
-      font-size: 14px;
-      margin-bottom: 14px;
+    /* MOVING TICKER */
+
+    .ticker {
+      overflow: hidden;
+
+      background: var(--gold);
+      color: #080808;
+
+      padding: 13px 0;
+
+      font-family: "Bebas Neue";
+
+      font-size: 21px;
+
+      letter-spacing: 3px;
+
+      white-space: nowrap;
     }
 
-    .quote-box p {
-      color: #f0f0f0;
-      font-size: 22px;
-      line-height: 1.35;
-      font-weight: bold;
+    .ticker-content {
+      display: inline-block;
+
+      animation: moveTicker 22s linear infinite;
     }
 
-    .quote-box span {
-      display: block;
-      margin-top: 12px;
-      color: var(--muted);
-      font-size: 13px;
-      text-transform: uppercase;
-      letter-spacing: 2px;
+    @keyframes moveTicker {
+      from {
+        transform: translateX(0);
+      }
+
+      to {
+        transform: translateX(-50%);
+      }
     }
 
-    /* MAIN CONTENT */
-    .container {
-      max-width: 1200px;
+    /* MAIN */
+
+    main {
+      max-width: 1250px;
       margin: auto;
-      padding: 30px 20px 80px;
+
+      padding: 40px 25px 100px;
     }
 
     section {
-      margin-top: 34px;
-      padding: 28px;
-      background:
-        linear-gradient(180deg, rgba(18,21,27,0.95), rgba(10,13,18,0.96));
-      border: 1px solid rgba(200,162,74,0.14);
-      box-shadow: 0 16px 32px rgba(0,0,0,0.18);
-      position: relative;
-      overflow: hidden;
+      margin-top: 90px;
     }
 
-    section::after {
-      content: "";
-      position: absolute;
-      top: 0;
-      right: 0;
-      width: 160px;
-      height: 160px;
-      background: radial-gradient(circle, rgba(200,162,74,0.08), transparent 65%);
-      pointer-events: none;
+    .section-label {
+      color: var(--gold);
+
+      font-size: 13px;
+
+      text-transform: uppercase;
+      letter-spacing: 4px;
     }
 
     .section-title {
-      display: flex;
-      justify-content: space-between;
-      align-items: end;
-      gap: 12px;
-      margin-bottom: 24px;
-      flex-wrap: wrap;
-    }
+      font-family: "Bebas Neue";
 
-    .section-title h3 {
-      font-size: 30px;
-      color: var(--gold);
+      font-size: clamp(45px, 6vw, 75px);
+
       text-transform: uppercase;
-      letter-spacing: 2px;
+
+      letter-spacing: 3px;
+
+      margin-bottom: 30px;
     }
 
-    .section-title p {
-      color: var(--muted);
-      text-transform: uppercase;
-      letter-spacing: 2px;
-      font-size: 12px;
-    }
+    /* SCHEDULE */
 
-    .grid-3 {
+    .schedule-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
+
       gap: 20px;
     }
 
-    .grid-4 {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 20px;
-    }
-
-    .card {
-      background: linear-gradient(180deg, rgba(18,21,27,0.9), rgba(10,13,18,0.92));
-      border: 1px solid rgba(255,255,255,0.06);
-      padding: 22px;
-      min-height: 180px;
-      position: relative;
-    }
-
-    .card h4 {
-      color: var(--gold);
-      margin-bottom: 14px;
-      text-transform: uppercase;
-      letter-spacing: 1.5px;
-      font-size: 18px;
-    }
-
-    .score-big {
-      font-size: 44px;
-      font-weight: 900;
-      line-height: 1;
-      margin-bottom: 10px;
-    }
-
-    .muted {
-      color: var(--muted);
-    }
-
-    /* roster */
-    .player-card {
+    .game-card {
       background:
-        linear-gradient(to top, rgba(5,6,8,0.92), rgba(5,6,8,0.22)),
-        linear-gradient(135deg, rgba(24,38,63,0.95), rgba(8,8,8,0.95));
-      border: 1px solid rgba(200,162,74,0.16);
+        linear-gradient(
+          135deg,
+          rgba(255,255,255,.03),
+          rgba(255,255,255,.01)
+        );
+
+      border: 1px solid rgba(214,173,82,.14);
+
+      padding: 28px;
+
+      position: relative;
+
       overflow: hidden;
-      transition: 0.25s ease;
+
+      min-height: 220px;
+
+      transition: .3s;
+    }
+
+    .game-card::before {
+      content: "";
+
+      position: absolute;
+
+      top: -50px;
+      right: -50px;
+
+      width: 140px;
+      height: 140px;
+
+      border: 25px solid rgba(214,173,82,.05);
+
+      transform: rotate(45deg);
+    }
+
+    .game-card:hover {
+      transform: translateY(-7px);
+
+      border-color: rgba(214,173,82,.45);
+
+      box-shadow:
+        0 20px 50px rgba(0,0,0,.55);
+    }
+
+    .game-card h3 {
+      color: var(--gold);
+
+      text-transform: uppercase;
+
+      letter-spacing: 2px;
+
+      margin-bottom: 25px;
+    }
+
+    .score {
+      font-family: "Bebas Neue";
+
+      font-size: 58px;
+
+      line-height: 1;
+    }
+
+    .game-card p {
+      color: var(--gray);
+
+      margin-top: 10px;
+    }
+
+    /* ROSTER */
+
+    .roster-grid {
+      display: grid;
+
+      grid-template-columns:
+        repeat(auto-fit, minmax(260px,1fr));
+
+      gap: 22px;
+    }
+
+    .player-card {
+      height: 430px;
+
+      position: relative;
+
+      overflow: hidden;
+
+      border:
+        1px solid rgba(214,173,82,.18);
+
+      background:
+        linear-gradient(
+          145deg,
+          #15181e,
+          #070707
+        );
+
+      transition: .35s;
     }
 
     .player-card:hover {
-      transform: translateY(-4px);
-      border-color: rgba(200,162,74,0.32);
+      transform:
+        translateY(-10px)
+        scale(1.015);
+
+      box-shadow:
+        0 20px 50px rgba(0,0,0,.7);
+
+      border-color: var(--gold);
     }
 
-    .player-image {
-      height: 230px;
+    .player-photo {
+      height: 70%;
+
       background:
-        linear-gradient(to top, rgba(5,6,8,1), rgba(5,6,8,0.25)),
-        url("https://images.unsplash.com/photo-1511884642898-4c92249e20b6?auto=format&fit=crop&w=900&q=80") center/cover no-repeat;
-      position: relative;
+        linear-gradient(
+          transparent,
+          rgba(0,0,0,.95)
+        ),
+
+        url("https://images.unsplash.com/photo-1579952363873-27f3bade9f55?auto=format&fit=crop&w=900&q=80");
+
+      background-position: center;
+      background-size: cover;
+
+      transition: .4s;
     }
 
-    .player-image.placeholder2 {
-      background:
-        linear-gradient(to top, rgba(5,6,8,1), rgba(5,6,8,0.25)),
-        url("https://images.unsplash.com/photo-1521412644187-c49fa049e84d?auto=format&fit=crop&w=900&q=80") center/cover no-repeat;
+    .player-card:hover .player-photo {
+      transform: scale(1.04);
     }
 
-    .player-image.placeholder3 {
-      background:
-        linear-gradient(to top, rgba(5,6,8,1), rgba(5,6,8,0.25)),
-        url("https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&w=900&q=80") center/cover no-repeat;
-    }
-
-    .player-num {
+    .number {
       position: absolute;
-      bottom: 12px;
-      right: 16px;
-      font-size: 58px;
-      font-weight: 900;
-      color: rgba(200,162,74,0.85);
-    }
 
-    .player-info {
-      padding: 20px;
-    }
+      right: 18px;
+      top: 18px;
 
-    .player-info h4 {
-      font-size: 24px;
-      margin-bottom: 6px;
-    }
+      font-family: "Bebas Neue";
 
-    .player-info p {
-      color: var(--muted);
-      text-transform: uppercase;
-      letter-spacing: 1px;
-      font-size: 13px;
-    }
+      font-size: 80px;
 
-    .social-links {
-      margin-top: 14px;
-      display: flex;
-      gap: 10px;
-      flex-wrap: wrap;
-    }
+      color: rgba(214,173,82,.75);
 
-    .social-links a {
-      font-size: 13px;
-      padding: 7px 10px;
-      border: 1px solid rgba(200,162,74,0.2);
-      color: #ddd;
-      background: rgba(255,255,255,0.02);
-    }
-
-    .social-links a:hover {
-      color: var(--gold);
-      border-color: rgba(200,162,74,0.4);
-    }
-
-    /* stats strip */
-    .stats-strip {
-      display: grid;
-      grid-template-columns: 1.4fr repeat(4, 1fr);
-      gap: 0;
-      border: 1px solid rgba(200,162,74,0.14);
-      overflow: hidden;
-    }
-
-    .stat-block {
-      padding: 26px 20px;
-      background: rgba(12,14,18,0.75);
-      border-right: 1px solid rgba(200,162,74,0.12);
-      text-align: center;
-    }
-
-    .stat-block:last-child {
-      border-right: none;
-    }
-
-    .stat-block h5 {
-      color: var(--muted);
-      text-transform: uppercase;
-      letter-spacing: 1.5px;
-      font-size: 12px;
-      margin-top: 6px;
-    }
-
-    .stat-number {
-      font-size: 46px;
-      font-weight: 900;
-      color: white;
       line-height: 1;
     }
 
-    .featured-player {
-      text-align: left;
-      display: flex;
-      align-items: center;
-      gap: 14px;
+    .player-info {
+      position: absolute;
+
+      bottom: 0;
+      left: 0;
+
+      width: 100%;
+
+      padding: 25px;
     }
 
-    .featured-avatar {
-      width: 70px;
-      height: 70px;
-      border-radius: 50%;
-      background:
-        linear-gradient(135deg, rgba(200,162,74,0.45), rgba(24,38,63,0.65));
-      border: 2px solid rgba(200,162,74,0.35);
-      flex-shrink: 0;
-    }
+    .player-info h3 {
+      font-family: "Bebas Neue";
 
-    .featured-player strong {
-      display: block;
-      font-size: 22px;
+      font-size: 34px;
+
       color: var(--gold);
-      text-transform: uppercase;
+
+      letter-spacing: 2px;
     }
 
-    .featured-player span {
-      color: var(--muted);
+    .position {
+      color: #aaa;
+
       text-transform: uppercase;
+
+      letter-spacing: 3px;
+
       font-size: 12px;
-      letter-spacing: 1.5px;
     }
 
-    /* media cards */
-    .media-card {
-      min-height: 210px;
+    .socials {
       display: flex;
-      flex-direction: column;
-      justify-content: end;
-      background:
-        linear-gradient(to top, rgba(5,6,8,0.94), rgba(5,6,8,0.18)),
-        url("https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=1200&q=80") center/cover no-repeat;
+
+      gap: 9px;
+
+      flex-wrap: wrap;
+
+      margin-top: 15px;
     }
 
-    .media-card.alt1 {
-      background:
-        linear-gradient(to top, rgba(5,6,8,0.94), rgba(5,6,8,0.18)),
-        url("https://images.unsplash.com/photo-1511512578047-dfb367046420?auto=format&fit=crop&w=1200&q=80") center/cover no-repeat;
+    .socials a {
+      font-size: 12px;
+
+      border: 1px solid rgba(214,173,82,.35);
+
+      padding: 6px 9px;
+
+      transition: .2s;
     }
 
-    .media-card.alt2 {
-      background:
-        linear-gradient(to top, rgba(5,6,8,0.94), rgba(5,6,8,0.18)),
-        url("https://images.unsplash.com/photo-1470229722913-7c0e2dbbafd3?auto=format&fit=crop&w=1200&q=80") center/cover no-repeat;
+    .socials a:hover {
+      background: var(--gold);
+      color: #080808;
     }
 
-    /* footer */
-    footer {
-      margin-top: 40px;
-      padding: 30px 20px 50px;
+    /* STATS */
+
+    .stats-grid {
+      display: grid;
+
+      grid-template-columns:
+        repeat(4, 1fr);
+
+      border:
+        1px solid rgba(214,173,82,.16);
+    }
+
+    .stat {
       text-align: center;
-      color: var(--muted);
-      border-top: 1px solid rgba(200,162,74,0.12);
+
+      padding: 40px 15px;
+
+      border-right:
+        1px solid rgba(214,173,82,.13);
+
+      background:
+        linear-gradient(
+          180deg,
+          #111318,
+          #080808
+        );
+    }
+
+    .stat:last-child {
+      border-right: 0;
+    }
+
+    .stat-number {
+      font-family: "Bebas Neue";
+
+      font-size: 70px;
+
+      color: var(--gold);
+
+      line-height: 1;
+    }
+
+    .stat-name {
+      color: #999;
+
+      letter-spacing: 2px;
+
+      text-transform: uppercase;
+
+      font-size: 12px;
+
+      margin-top: 8px;
+    }
+
+    /* MEDIA */
+
+    .media-grid {
+      display: grid;
+
+      grid-template-columns:
+        2fr 1fr 1fr;
+
+      gap: 20px;
+    }
+
+    .media-card {
+      min-height: 300px;
+
+      display: flex;
+
+      align-items: end;
+
+      padding: 25px;
+
+      position: relative;
+
+      overflow: hidden;
+
+      background:
+        linear-gradient(
+          transparent,
+          rgba(0,0,0,.96)
+        ),
+
+        url("https://images.unsplash.com/photo-1514525253161-7a46d19cd819?auto=format&fit=crop&w=1000&q=80");
+
+      background-size: cover;
+      background-position: center;
+
+      border:
+        1px solid rgba(214,173,82,.15);
+
+      transition: .3s;
+    }
+
+    .media-card:hover {
+      transform: scale(1.015);
+
+      border-color: var(--gold);
+    }
+
+    .media-card h3 {
+      font-family: "Bebas Neue";
+
+      color: var(--gold);
+
+      font-size: 32px;
+
+      letter-spacing: 2px;
+    }
+
+    /* FOOTER */
+
+    footer {
+      margin-top: 100px;
+
+      text-align: center;
+
+      padding: 45px 20px;
+
+      border-top:
+        1px solid rgba(214,173,82,.15);
+
+      color: #777;
     }
 
     footer strong {
       color: var(--gold);
-      letter-spacing: 2px;
-      text-transform: uppercase;
     }
 
-    /* mobile */
-    @media (max-width: 1024px) {
-      .hero-inner {
-        grid-template-columns: 1fr;
-      }
+    /* MOBILE */
 
-      .grid-3,
-      .grid-4 {
-        grid-template-columns: 1fr 1fr;
-      }
-
-      .stats-strip {
-        grid-template-columns: 1fr 1fr;
-      }
-
-      .featured-player {
-        grid-column: span 2;
-      }
-    }
-
-    @media (max-width: 700px) {
-      .nav {
-        flex-direction: column;
-        align-items: flex-start;
-      }
+    @media(max-width: 850px) {
 
       nav {
-        gap: 12px;
+        display: none;
       }
 
-      .hero {
-        min-height: auto;
-        padding: 70px 20px;
-      }
-
-      .hero-left p {
-        font-size: 17px;
-      }
-
-      .grid-3,
-      .grid-4,
-      .stats-strip {
+      .schedule-grid {
         grid-template-columns: 1fr;
       }
 
-      .featured-player {
-        grid-column: auto;
+      .stats-grid {
+        grid-template-columns: 1fr 1fr;
       }
 
-      section {
-        padding: 22px 16px;
+      .media-grid {
+        grid-template-columns: 1fr;
       }
 
-      .score-big {
-        font-size: 36px;
+      .hero h1 {
+        font-size: 80px;
       }
+
     }
+
   </style>
 </head>
+
 <body>
-  <div class="site-wrap">
 
-    <header>
-      <div class="nav">
-        <div class="logo-block">
-          <h1>New York Guardians</h1>
-          <p>ESG Football</p>
-        </div>
+<header>
 
-        <nav>
-          <a href="#home">Home</a>
-          <a href="#schedule">Schedule</a>
-          <a href="#roster">Roster</a>
-          <a href="#stats">Stats</a>
-          <a href="#media">Media</a>
-        </nav>
-      </div>
-    </header>
+  <div class="nav">
 
-    <section class="hero" id="home">
-      <div class="hero-inner">
-        <div class="hero-left">
-          <div class="eyebrow">Brooklyn Nights • Gritty Gold Theme</div>
-          <h2>
-            New York
-            <span class="gold">Guardians</span>
-          </h2>
-          <p>
-            Built for the city. A dark Brooklyn-style home for the New York Guardians,
-            featuring schedule, roster, stats, media, and player profiles — all with a
-            gritty nighttime NYC feel.
-          </p>
+    <div class="logo">
+      NY GUARDIANS
+    </div>
 
-          <div class="hero-buttons">
-            <a href="#roster" class="btn gold">View Roster</a>
-            <a href="#schedule" class="btn dark">View Schedule</a>
-          </div>
-        </div>
+    <nav>
 
-        <div class="hero-right">
-          <div class="quote-box">
-            <h3>Team Motto</h3>
-            <p>Protect The City.</p>
-            <span>More than a game. A city.</span>
-          </div>
-        </div>
-      </div>
-    </section>
+      <a href="#home">Home</a>
+      <a href="#schedule">Schedule</a>
+      <a href="#roster">Roster</a>
+      <a href="#stats">Stats</a>
+      <a href="#media">Media</a>
 
-    <div class="container">
+    </nav>
 
-      <section id="schedule">
-        <div class="section-title">
-          <div>
-            <h3>Schedule & Results</h3>
-            <p>Latest games, upcoming matchups, and record</p>
-          </div>
-        </div>
+  </div>
 
-        <div class="grid-3">
-          <div class="card">
-            <h4>Latest Result</h4>
-            <div class="score-big">28 - 0</div>
-            <p><strong>Guardians</strong> vs Tritons</p>
-            <p class="muted">Final</p>
-          </div>
+</header>
 
-          <div class="card">
-            <h4>Next Game</h4>
-            <div class="score-big">VS TBD</div>
-            <p>Date: Coming Soon</p>
-            <p class="muted">Time: TBD</p>
-          </div>
 
-          <div class="card">
-            <h4>Season Record</h4>
-            <div class="score-big">0 - 0</div>
-            <p class="muted">Update this when the season starts or after each game.</p>
-          </div>
-        </div>
-      </section>
+<section class="hero" id="home">
 
-      <section id="roster">
-        <div class="section-title">
-          <div>
-            <h3>Roster</h3>
-            <p>Meet the Guardians</p>
-          </div>
-        </div>
+  <div class="hero-inner">
 
-        <div class="grid-3">
-          <div class="player-card">
-            <div class="player-image">
-              <div class="player-num">11</div>
-            </div>
-            <div class="player-info">
-              <h4>Som3body_white</h4>
-              <p>WR / DB</p>
-              <div class="social-links">
-                <a href="#">Twitch</a>
-                <a href="#">YouTube</a>
-                <a href="#">X</a>
-                <a href="#">Instagram</a>
-              </div>
-            </div>
-          </div>
+    <div class="city-tag">
+      Brooklyn • New York City
+    </div>
 
-          <div class="player-card">
-            <div class="player-image placeholder2">
-              <div class="player-num">00</div>
-            </div>
-            <div class="player-info">
-              <h4>Player Two</h4>
-              <p>Position</p>
-              <div class="social-links">
-                <a href="#">Twitch</a>
-                <a href="#">X</a>
-              </div>
-            </div>
-          </div>
+    <h1>
 
-          <div class="player-card">
-            <div class="player-image placeholder3">
-              <div class="player-num">00</div>
-            </div>
-            <div class="player-info">
-              <h4>Player Three</h4>
-              <p>Position</p>
-              <div class="social-links">
-                <a href="#">Twitch</a>
-                <a href="#">X</a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
+      New York
 
-      <section id="stats">
-        <div class="section-title">
-          <div>
-            <h3>Player Stats</h3>
-            <p>Track performance and impact</p>
-          </div>
-        </div>
+      <span>
+        Guardians
+      </span>
 
-        <div class="stats-strip">
-          <div class="stat-block featured-player">
-            <div class="featured-avatar"></div>
-            <div>
-              <strong>#11 Som3body_white</strong>
-              <span>Featured Player • WR / DB</span>
-            </div>
-          </div>
+    </h1>
 
-          <div class="stat-block">
-            <div class="stat-number">10</div>
-            <h5>Receptions</h5>
-          </div>
+    <p class="hero-subtitle">
 
-          <div class="stat-block">
-            <div class="stat-number">410</div>
-            <h5>Receiving Yards</h5>
-          </div>
+      Built under city lights.
 
-          <div class="stat-block">
-            <div class="stat-number">7</div>
-            <h5>Receiving TDs</h5>
-          </div>
+      New York Guardians ESG Football.
 
-          <div class="stat-block">
-            <div class="stat-number">3</div>
-            <h5>Interceptions</h5>
-          </div>
-        </div>
-      </section>
+      Schedule. Roster. Stats. Highlights.
 
-      <section id="media">
-        <div class="section-title">
-          <div>
-            <h3>Media</h3>
-            <p>Highlights, clips, and team content</p>
-          </div>
-        </div>
+      One city. One team.
 
-        <div class="grid-3">
-          <div class="card media-card">
-            <h4>Game Highlights</h4>
-            <p>Link your best plays, game recaps, or YouTube videos here.</p>
-          </div>
+    </p>
 
-          <div class="card media-card alt1">
-            <h4>Twitch Clips</h4>
-            <p>Add stream clips, live links, and VOD content.</p>
-          </div>
+    <div class="hero-buttons">
 
-          <div class="card media-card alt2">
-            <h4>Team Socials</h4>
-            <p>Put your Guardians social accounts here and connect the team.</p>
-          </div>
-        </div>
-      </section>
+      <a href="#roster"
+         class="button gold">
+        Meet The Guardians
+      </a>
 
-      <footer>
-        <p><strong>New York Guardians</strong> • ESG Football • Brooklyn Night Theme</p>
-      </footer>
+      <a href="#schedule"
+         class="button dark">
+        View Schedule
+      </a>
 
     </div>
+
   </div>
+
+  <div class="city-line"></div>
+
+</section>
+
+
+<div class="ticker">
+
+  <div class="ticker-content">
+
+    PROTECT THE CITY • NEW YORK GUARDIANS • ESG FOOTBALL • BROOKLYN NIGHTS •
+    PROTECT THE CITY • NEW YORK GUARDIANS • ESG FOOTBALL • BROOKLYN NIGHTS •
+
+  </div>
+
+</div>
+
+
+<main>
+
+
+<section id="schedule">
+
+  <div class="section-label">
+    Game Day
+  </div>
+
+  <h2 class="section-title">
+    Schedule & Results
+  </h2>
+
+
+  <div class="schedule-grid">
+
+    <div class="game-card">
+
+      <h3>
+        Latest Result
+      </h3>
+
+      <div class="score">
+        28 — 0
+      </div>
+
+      <p>
+        GUARDIANS vs TRITONS
+      </p>
+
+      <p>
+        FINAL
+      </p>
+
+    </div>
+
+
+    <div class="game-card">
+
+      <h3>
+        Next Game
+      </h3>
+
+      <div class="score">
+        VS TBD
+      </div>
+
+      <p>
+        Upcoming matchup
+      </p>
+
+      <p>
+        Date & time coming soon
+      </p>
+
+    </div>
+
+
+    <div class="game-card">
+
+      <h3>
+        Season Record
+      </h3>
+
+      <div class="score">
+        0 — 0
+      </div>
+
+      <p>
+        New season
+      </p>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<section id="roster">
+
+  <div class="section-label">
+    The Squad
+  </div>
+
+  <h2 class="section-title">
+    Guardians Roster
+  </h2>
+
+
+  <div class="roster-grid">
+
+
+    <div class="player-card">
+
+      <div class="player-photo">
+      </div>
+
+      <div class="number">
+        11
+      </div>
+
+      <div class="player-info">
+
+        <h3>
+          Som3body_white
+        </h3>
+
+        <div class="position">
+          WR / DB
+        </div>
+
+        <div class="socials">
+
+          <a href="#">
+            Twitch
+          </a>
+
+          <a href="#">
+            YouTube
+          </a>
+
+          <a href="#">
+            X
+          </a>
+
+          <a href="#">
+            Instagram
+          </a>
+
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <div class="player-card">
+
+      <div class="player-photo">
+      </div>
+
+      <div class="number">
+        00
+      </div>
+
+      <div class="player-info">
+
+        <h3>
+          Player Two
+        </h3>
+
+        <div class="position">
+          Position
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <div class="player-card">
+
+      <div class="player-photo">
+      </div>
+
+      <div class="number">
+        00
+      </div>
+
+      <div class="player-info">
+
+        <h3>
+          Player Three
+        </h3>
+
+        <div class="position">
+          Position
+        </div>
+
+      </div>
+
+    </div>
+
+
+  </div>
+
+</section>
+
+
+<section id="stats">
+
+  <div class="section-label">
+    Numbers Don't Lie
+  </div>
+
+  <h2 class="section-title">
+    Player Stats
+  </h2>
+
+
+  <div class="stats-grid">
+
+    <div class="stat">
+
+      <div class="stat-number">
+        10
+      </div>
+
+      <div class="stat-name">
+        Receptions
+      </div>
+
+    </div>
+
+
+    <div class="stat">
+
+      <div class="stat-number">
+        410
+      </div>
+
+      <div class="stat-name">
+        Receiving Yards
+      </div>
+
+    </div>
+
+
+    <div class="stat">
+
+      <div class="stat-number">
+        7
+      </div>
+
+      <div class="stat-name">
+        Receiving TDs
+      </div>
+
+    </div>
+
+
+    <div class="stat">
+
+      <div class="stat-number">
+        3
+      </div>
+
+      <div class="stat-name">
+        Interceptions
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<section id="media">
+
+  <div class="section-label">
+    From The City
+  </div>
+
+  <h2 class="section-title">
+    Guardians Media
+  </h2>
+
+
+  <div class="media-grid">
+
+    <div class="media-card">
+
+      <h3>
+        Game Highlights
+      </h3>
+
+    </div>
+
+
+    <div class="media-card">
+
+      <h3>
+        Twitch Clips
+      </h3>
+
+    </div>
+
+
+    <div class="media-card">
+
+      <h3>
+        Team Socials
+      </h3>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+</main>
+
+
+<footer>
+
+  <strong>
+    New York Guardians
+  </strong>
+
+  <br>
+
+  ESG Football • New York City
+
+</footer>
+
+
 </body>
 </html>
