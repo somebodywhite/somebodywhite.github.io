@@ -1,1392 +1,1105 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>New York Guardians | ESG Football</title>
-
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
-<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;500;600;700&family=Black+Ops+One&family=Teko:wght@400;500;600;700&display=swap" rel="stylesheet">
-
-<style>
-
-:root{
-  --gold:#d5ad55;
-  --gold2:#88631f;
-  --black:#030405;
-  --dark:#090b0e;
-  --white:#f5f5f5;
-  --gray:#90949c;
-}
-
-*{
-  margin:0;
-  padding:0;
-  box-sizing:border-box;
-}
-
-html{
-  scroll-behavior:smooth;
-}
-
-body{
-  background:#030405;
-  color:white;
-  font-family:"Barlow Condensed",sans-serif;
-  overflow-x:hidden;
-}
-
-a{
-  text-decoration:none;
-  color:inherit;
-}
-
-/* NAVIGATION */
-
-header{
-  position:fixed;
-  top:0;
-  width:100%;
-  z-index:1000;
-  background:rgba(0,0,0,.55);
-  backdrop-filter:blur(14px);
-  border-bottom:1px solid rgba(213,173,85,.15);
-}
-
-nav{
-  max-width:1300px;
-  margin:auto;
-  padding:17px 25px;
-
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-}
-
-.brand{
-  font-family:"Black Ops One",sans-serif;
-  font-size:22px;
-  letter-spacing:2px;
-}
-
-.brand span{
-  color:var(--gold);
-}
-
-.menu{
-  display:flex;
-  gap:27px;
-}
-
-.menu a{
-  font-size:15px;
-  font-weight:600;
-  letter-spacing:2px;
-  text-transform:uppercase;
-  position:relative;
-}
-
-.menu a::after{
-  content:"";
-  position:absolute;
-  left:0;
-  bottom:-7px;
-  width:0%;
-  height:2px;
-  background:var(--gold);
-  transition:.3s;
-}
-
-.menu a:hover::after{
-  width:100%;
-}
-
-
-/* HERO */
-
-.hero{
-  min-height:100vh;
-  position:relative;
-  display:flex;
-  align-items:center;
-  overflow:hidden;
-
-  background:
-    radial-gradient(circle at 70% 40%,rgba(213,173,85,.14),transparent 25%),
-    linear-gradient(120deg,#020304 15%,#0a0e15 65%,#020304 100%);
-}
-
-.background-word{
-  position:absolute;
-  left:-4%;
-  bottom:2%;
-
-  font-family:"Black Ops One",sans-serif;
-  font-size:17vw;
-  color:rgba(255,255,255,.018);
-
-  letter-spacing:10px;
-  white-space:nowrap;
-
-  animation:drift 15s ease-in-out infinite alternate;
-}
-
-@keyframes drift{
-  from{
-    transform:translateX(-2%);
-  }
-
-  to{
-    transform:translateX(4%);
-  }
-}
-
-.light{
-  position:absolute;
-  width:900px;
-  height:900px;
-
-  background:
-    radial-gradient(circle,rgba(213,173,85,.18),transparent 65%);
-
-  top:-360px;
-  right:-200px;
-
-  animation:lightMove 7s ease-in-out infinite alternate;
-}
-
-@keyframes lightMove{
-  to{
-    transform:translate(-170px,140px);
-  }
-}
-
-
-/* CITY SKYLINE */
-
-.skyline{
-  position:absolute;
-  bottom:0;
-  right:0;
-
-  width:65%;
-  height:43%;
-
-  opacity:.65;
-
-  display:flex;
-  align-items:flex-end;
-  justify-content:flex-end;
-  gap:6px;
-}
-
-.building{
-  width:7%;
-  background:linear-gradient(#151a21,#050607);
-  border-top:1px solid rgba(213,173,85,.2);
-  position:relative;
-}
-
-.building::after{
-  content:"";
-  position:absolute;
-
-  inset:12px 18%;
-
-  background:
-    repeating-linear-gradient(
-      to bottom,
-      rgba(213,173,85,.25) 0px,
-      rgba(213,173,85,.25) 3px,
-      transparent 3px,
-      transparent 15px
-    );
-}
-
-.b1{height:47%}
-.b2{height:70%}
-.b3{height:38%}
-.b4{height:86%}
-.b5{height:57%}
-.b6{height:75%}
-.b7{height:46%}
-.b8{height:64%}
-.b9{height:42%}
-
-
-/* HERO CONTENT */
-
-.hero-content{
-  width:100%;
-  max-width:1300px;
-  margin:auto;
-  padding:130px 25px 100px;
-
-  position:relative;
-  z-index:5;
-}
-
-.location{
-  color:var(--gold);
-  letter-spacing:5px;
-  text-transform:uppercase;
-  font-size:15px;
-  font-weight:600;
-
-  margin-bottom:20px;
-}
-
-.hero h1{
-  font-family:"Black Ops One",sans-serif;
-  font-size:clamp(65px,10vw,145px);
-  line-height:.85;
-  letter-spacing:1px;
-  text-transform:uppercase;
-}
-
-.hero h1 span{
-  color:var(--gold);
-  display:block;
-
-  text-shadow:
-    0 0 45px rgba(213,173,85,.22);
-}
-
-.tagline{
-  font-family:"Teko",sans-serif;
-  font-size:31px;
-  letter-spacing:3px;
-  text-transform:uppercase;
-
-  margin-top:32px;
-
-  color:#c7c9ce;
-}
-
-.hero-buttons{
-  margin-top:35px;
-
-  display:flex;
-  gap:14px;
-}
-
-.btn{
-  padding:14px 27px;
-
-  border:1px solid var(--gold);
-
-  letter-spacing:2px;
-  text-transform:uppercase;
-  font-weight:700;
-
-  transition:.3s;
-}
-
-.btn.primary{
-  background:var(--gold);
-  color:black;
-}
-
-.btn:hover{
-  transform:translateY(-5px);
-
-  box-shadow:
-    0 15px 45px rgba(213,173,85,.22);
-}
-
-
-/* MOVING BAR */
-
-.marquee{
-  background:var(--gold);
-  color:black;
-
-  overflow:hidden;
-  white-space:nowrap;
-
-  font-family:"Teko",sans-serif;
-  letter-spacing:3px;
-
-  font-size:27px;
-  font-weight:600;
-  padding:8px 0;
-}
-
-.marquee div{
-  display:inline-block;
-  min-width:200%;
-
-  animation:scroll 22s linear infinite;
-}
-
-@keyframes scroll{
-  to{
-    transform:translateX(-50%);
-  }
-}
-
-
-/* GENERAL */
-
-main{
-  max-width:1300px;
-  margin:auto;
-  padding:20px 25px 120px;
-}
-
-section{
-  margin-top:120px;
-}
-
-.mini-title{
-  color:var(--gold);
-
-  text-transform:uppercase;
-  letter-spacing:5px;
-
-  font-size:14px;
-  font-weight:600;
-}
-
-.title{
-  font-family:"Black Ops One",sans-serif;
-
-  font-size:clamp(42px,6vw,72px);
-
-  line-height:1;
-
-  letter-spacing:1px;
-
-  margin:12px 0 40px;
-}
-
-
-/* GAME SECTION */
-
-.games{
-  display:grid;
-  grid-template-columns:1.5fr 1fr;
-
-  gap:22px;
-}
-
-.game-main{
-  min-height:420px;
-  padding:42px;
-
-  display:flex;
-  flex-direction:column;
-  justify-content:flex-end;
-
-  background:
-    linear-gradient(to top,#050505 5%,transparent 75%),
-    linear-gradient(135deg,#172031,#050506);
-
-  border:1px solid rgba(213,173,85,.2);
-
-  position:relative;
-  overflow:hidden;
-
-  transition:.4s;
-}
-
-.game-main:hover{
-  transform:translateY(-8px);
-  border-color:var(--gold);
-}
-
-.game-main::before{
-  content:"FINAL";
-
-  position:absolute;
-  top:30px;
-  left:30px;
-
-  color:var(--gold);
-
-  letter-spacing:5px;
-  font-size:15px;
-  font-weight:700;
-}
-
-.match{
-  font-family:"Teko",sans-serif;
-  font-size:76px;
-  line-height:.8;
-  font-weight:600;
-}
-
-.match strong{
-  color:var(--gold);
-}
-
-.final-score{
-  font-family:"Teko",sans-serif;
-
-  position:absolute;
-  top:20px;
-  right:35px;
-
-  font-size:95px;
-  line-height:1;
-  font-weight:600;
-
-  color:rgba(213,173,85,.76);
-}
-
-.game-main p{
-  color:#aaa;
-  letter-spacing:2px;
-  margin-top:16px;
-}
-
-.side-games{
-  display:grid;
-  gap:22px;
-}
-
-.small-game{
-  min-height:199px;
-  padding:28px;
-
-  background:
-    linear-gradient(130deg,#11161f,#060708);
-
-  border-left:4px solid var(--gold);
-
-  display:flex;
-  flex-direction:column;
-  justify-content:center;
-
-  transition:.3s;
-}
-
-.small-game:hover{
-  transform:translateX(7px);
-}
-
-.small-game span{
-  color:var(--gold);
-
-  letter-spacing:3px;
-  text-transform:uppercase;
-
-  font-size:13px;
-  font-weight:700;
-}
-
-.small-game h3{
-  font-family:"Teko",sans-serif;
-
-  font-size:49px;
-  line-height:1;
-
-  margin-top:10px;
-}
-
-
-/* ROSTER */
-
-.roster{
-  display:flex;
-  gap:20px;
-
-  overflow-x:auto;
-  padding-bottom:20px;
-
-  scroll-snap-type:x mandatory;
-}
-
-.roster::-webkit-scrollbar{
-  height:6px;
-}
-
-.roster::-webkit-scrollbar-thumb{
-  background:var(--gold);
-}
-
-.player{
-  min-width:320px;
-  height:500px;
-
-  position:relative;
-
-  scroll-snap-align:start;
-
-  overflow:hidden;
-
-  border:1px solid rgba(213,173,85,.17);
-
-  background:
-    radial-gradient(circle at 50% 25%,#2a3340,#090a0d 60%);
-
-  transition:.4s;
-}
-
-.player:hover{
-  transform:translateY(-12px);
-
-  border-color:var(--gold);
-
-  box-shadow:
-    0 25px 70px rgba(0,0,0,.7);
-}
-
-.player-number{
-  position:absolute;
-  right:15px;
-  top:-12px;
-
-  font-family:"Teko",sans-serif;
-
-  font-size:175px;
-  font-weight:600;
-
-  color:rgba(213,173,85,.12);
-
-  line-height:1;
-}
-
-.player-silhouette{
-  position:absolute;
-
-  width:175px;
-  height:310px;
-
-  left:50%;
-  top:75px;
-
-  transform:translateX(-50%);
-
-  background:
-    linear-gradient(#3c4654,#101319);
-
-  border-radius:50% 50% 20px 20px;
-}
-
-.player-silhouette::before{
-  content:"";
-
-  position:absolute;
-
-  width:80px;
-  height:80px;
-
-  border-radius:50%;
-
-  background:#465160;
-
-  top:-55px;
-  left:50%;
-
-  transform:translateX(-50%);
-}
-
-.player-info{
-  position:absolute;
-
-  bottom:0;
-
-  width:100%;
-
-  padding:25px;
-
-  background:
-    linear-gradient(transparent,rgba(0,0,0,.98) 35%);
-}
-
-.player-info h3{
-  font-family:"Teko",sans-serif;
-
-  font-size:48px;
-  line-height:.9;
-
-  color:var(--gold);
-
-  letter-spacing:1px;
-}
-
-.player-info p{
-  color:#aaa;
-
-  letter-spacing:3px;
-
-  font-size:13px;
-
-  text-transform:uppercase;
-}
-
-.socials{
-  display:flex;
-  gap:8px;
-
-  margin-top:14px;
-}
-
-.socials a{
-  padding:6px 9px;
-
-  border:1px solid rgba(213,173,85,.35);
-
-  font-size:12px;
-  font-weight:600;
-
-  transition:.2s;
-}
-
-.socials a:hover{
-  background:var(--gold);
-  color:black;
-}
-
-
-/* STATS */
-
-.stats{
-  display:grid;
-
-  grid-template-columns:repeat(4,1fr);
-
-  gap:1px;
-
-  background:rgba(213,173,85,.18);
-
-  border:1px solid rgba(213,173,85,.18);
-}
-
-.stat{
-  background:#08090b;
-
-  padding:55px 20px;
-
-  text-align:center;
-
-  transition:.3s;
-}
-
-.stat:hover{
-  background:#11151b;
-
-  transform:scale(1.03);
-
-  z-index:2;
-}
-
-.stat-value{
-  font-family:"Teko",sans-serif;
-
-  font-size:100px;
-  font-weight:600;
-
-  line-height:.75;
-
-  color:var(--gold);
-}
-
-.stat-label{
-  color:#999;
-
-  text-transform:uppercase;
-
-  letter-spacing:3px;
-
-  font-size:12px;
-  font-weight:600;
-
-  margin-top:18px;
-}
-
-
-/* MEDIA */
-
-.media-grid{
-  display:grid;
-
-  grid-template-columns:2fr 1fr;
-
-  grid-template-rows:260px 260px;
-
-  gap:18px;
-}
-
-.media{
-  border:1px solid rgba(213,173,85,.15);
-
-  position:relative;
-  overflow:hidden;
-
-  padding:28px;
-
-  display:flex;
-  align-items:flex-end;
-
-  transition:.4s;
-
-  background:
-    linear-gradient(to top,#050505,transparent),
-    linear-gradient(135deg,#202b3d,#090a0c);
-}
-
-.media:first-child{
-  grid-row:1 / 3;
-}
-
-.media:hover{
-  transform:scale(1.015);
-
-  border-color:var(--gold);
-}
-
-.media h3{
-  font-family:"Teko",sans-serif;
-
-  font-size:50px;
-  line-height:.9;
-
-  color:var(--gold);
-}
-
-
-/* FOOTER */
-
-footer{
-  margin-top:120px;
-
-  border-top:1px solid rgba(213,173,85,.15);
-
-  text-align:center;
-
-  padding:50px 20px;
-
-  color:#666;
-
-  letter-spacing:2px;
-}
-
-footer strong{
-  color:var(--gold);
-
-  font-family:"Black Ops One",sans-serif;
-
-  letter-spacing:2px;
-
-  font-size:21px;
-}
-
-
-/* SCROLL ANIMATION */
-
-.reveal{
-  opacity:0;
-  transform:translateY(45px);
-
-  transition:
-    opacity .8s ease,
-    transform .8s ease;
-}
-
-.reveal.visible{
-  opacity:1;
-  transform:translateY(0);
-}
-
-
-/* MOBILE */
-
-@media(max-width:800px){
-
-  .menu{
-    display:none;
-  }
-
-  .hero h1{
-    font-size:65px;
-  }
-
-  .tagline{
-    font-size:24px;
-  }
-
-  .skyline{
-    width:100%;
-    opacity:.4;
-  }
-
-  .games{
-    grid-template-columns:1fr;
-  }
-
-  .stats{
-    grid-template-columns:1fr 1fr;
-  }
-
-  .media-grid{
-    grid-template-columns:1fr;
-    grid-template-rows:auto;
-  }
-
-  .media{
-    min-height:260px;
-  }
-
-  .media:first-child{
-    grid-row:auto;
-  }
-
-  .title{
-    font-size:42px;
-  }
-
-}
-
-</style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>New York Guardians | ESG Football</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;500;600;700&family=Black+Ops+One&family=Teko:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --gold:#d5ad55;
+      --gold-dark:#8a6420;
+      --bg:#040507;
+      --bg2:#0a0d12;
+      --panel:rgba(10,12,16,0.78);
+      --panel-strong:rgba(6,8,11,0.9);
+      --white:#f4f4f4;
+      --muted:#a9b0bb;
+      --line:rgba(213,173,85,0.18);
+      --shadow:rgba(0,0,0,0.55);
+    }
+
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+    }
+
+    html{
+      scroll-behavior:smooth;
+    }
+
+    body{
+      font-family:"Barlow Condensed",sans-serif;
+      background:
+        radial-gradient(circle at top left, rgba(213,173,85,0.06), transparent 28%),
+        linear-gradient(to bottom, #030405, #06080b 45%, #030405);
+      color:var(--white);
+      overflow-x:hidden;
+    }
+
+    a{
+      text-decoration:none;
+      color:inherit;
+    }
+
+    img{
+      max-width:100%;
+      display:block;
+    }
+
+    /* subtle texture */
+    body::before{
+      content:"";
+      position:fixed;
+      inset:0;
+      pointer-events:none;
+      opacity:.06;
+      z-index:999;
+      background-image:
+        repeating-linear-gradient(
+          0deg,
+          rgba(255,255,255,.06) 0px,
+          rgba(255,255,255,.06) 1px,
+          transparent 1px,
+          transparent 3px
+        );
+    }
+
+    /* NAV */
+    header{
+      position:fixed;
+      top:0;
+      left:0;
+      width:100%;
+      z-index:1000;
+      background:rgba(5,6,8,0.58);
+      backdrop-filter:blur(14px);
+      border-bottom:1px solid var(--line);
+    }
+
+    .nav{
+      max-width:1280px;
+      margin:auto;
+      padding:16px 24px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:20px;
+    }
+
+    .brand{
+      font-family:"Black Ops One",sans-serif;
+      font-size:21px;
+      letter-spacing:1px;
+      text-transform:uppercase;
+    }
+
+    .brand span{
+      color:var(--gold);
+    }
+
+    .menu{
+      display:flex;
+      gap:26px;
+      flex-wrap:wrap;
+    }
+
+    .menu a{
+      font-size:14px;
+      font-weight:600;
+      letter-spacing:2px;
+      text-transform:uppercase;
+      position:relative;
+      transition:.25s;
+    }
+
+    .menu a::after{
+      content:"";
+      position:absolute;
+      left:0;
+      bottom:-8px;
+      width:0;
+      height:2px;
+      background:var(--gold);
+      transition:.25s;
+    }
+
+    .menu a:hover{
+      color:var(--gold);
+    }
+
+    .menu a:hover::after{
+      width:100%;
+    }
+
+    /* HERO */
+    .hero{
+      min-height:100vh;
+      position:relative;
+      overflow:hidden;
+      display:flex;
+      align-items:center;
+      isolation:isolate;
+      background:#050608;
+    }
+
+    /* Layer 1: night sky / skyline */
+    .hero::before{
+      content:"";
+      position:absolute;
+      inset:0;
+      background:
+        linear-gradient(to bottom, rgba(4,6,10,0.5), rgba(4,5,7,0.85)),
+        url("https://images.unsplash.com/photo-1518391846015-55a9cc003b25?auto=format&fit=crop&w=1800&q=80");
+      background-size:cover;
+      background-position:center;
+      transform:scale(1.03);
+      opacity:.95;
+      z-index:-5;
+    }
+
+    /* Layer 2: bridge / city layer */
+    .hero::after{
+      content:"";
+      position:absolute;
+      left:0;
+      right:0;
+      bottom:-2%;
+      height:58%;
+      background:
+        linear-gradient(to top, rgba(3,4,5,1), rgba(3,4,5,0.15)),
+        url("https://images.unsplash.com/photo-1500916434205-0c77489c6cf7?auto=format&fit=crop&w=1800&q=80");
+      background-size:cover;
+      background-position:center bottom;
+      opacity:.34;
+      z-index:-4;
+    }
+
+    .hero-overlay{
+      position:absolute;
+      inset:0;
+      background:
+        linear-gradient(90deg, rgba(4,5,7,0.9) 0%, rgba(4,5,7,0.68) 38%, rgba(4,5,7,0.86) 100%);
+      z-index:-3;
+    }
+
+    .hero-glow{
+      position:absolute;
+      inset:0;
+      z-index:-2;
+      background:
+        radial-gradient(circle at 70% 26%, rgba(213,173,85,.16), transparent 22%),
+        radial-gradient(circle at 28% 78%, rgba(213,173,85,.10), transparent 20%),
+        radial-gradient(circle at 82% 75%, rgba(255,180,60,.06), transparent 18%);
+      animation:glowShift 8s ease-in-out infinite alternate;
+    }
+
+    @keyframes glowShift{
+      from{ transform:translateY(0); }
+      to{ transform:translateY(-10px); }
+    }
+
+    .hero-fog{
+      position:absolute;
+      left:-10%;
+      right:-10%;
+      bottom:0;
+      height:34%;
+      z-index:-1;
+      background:
+        radial-gradient(circle at 20% 65%, rgba(255,255,255,.06), transparent 20%),
+        radial-gradient(circle at 40% 80%, rgba(255,255,255,.05), transparent 22%),
+        radial-gradient(circle at 70% 75%, rgba(255,255,255,.04), transparent 24%),
+        radial-gradient(circle at 90% 70%, rgba(255,255,255,.05), transparent 16%);
+      filter:blur(22px);
+      animation:fogMove 16s ease-in-out infinite alternate;
+    }
+
+    @keyframes fogMove{
+      from{ transform:translateX(-1%) translateY(0); }
+      to{ transform:translateX(2%) translateY(-8px); }
+    }
+
+    .hero-content{
+      width:100%;
+      max-width:1280px;
+      margin:auto;
+      padding:130px 24px 100px;
+      position:relative;
+      z-index:5;
+    }
+
+    .eyebrow{
+      display:inline-block;
+      color:var(--gold);
+      border-left:4px solid var(--gold);
+      padding:7px 0 7px 12px;
+      font-size:14px;
+      font-weight:600;
+      letter-spacing:4px;
+      text-transform:uppercase;
+      margin-bottom:20px;
+      background:linear-gradient(to right, rgba(213,173,85,0.08), transparent);
+    }
+
+    .hero h1{
+      font-family:"Black Ops One",sans-serif;
+      font-size:clamp(62px, 10vw, 138px);
+      line-height:.86;
+      text-transform:uppercase;
+      max-width:780px;
+      text-shadow:0 10px 35px rgba(0,0,0,0.45);
+    }
+
+    .hero h1 span{
+      color:var(--gold);
+      display:block;
+      text-shadow:
+        0 0 24px rgba(213,173,85,.15),
+        0 8px 30px rgba(0,0,0,.35);
+    }
+
+    .tagline{
+      font-family:"Teko",sans-serif;
+      font-size:30px;
+      letter-spacing:2px;
+      text-transform:uppercase;
+      color:#d7dbe1;
+      margin-top:26px;
+    }
+
+    .hero-text{
+      max-width:620px;
+      margin-top:14px;
+      font-size:22px;
+      color:#c2c8d0;
+      line-height:1.45;
+    }
+
+    .hero-buttons{
+      margin-top:34px;
+      display:flex;
+      gap:14px;
+      flex-wrap:wrap;
+    }
+
+    .btn{
+      padding:14px 24px;
+      border:1px solid var(--gold);
+      text-transform:uppercase;
+      letter-spacing:2px;
+      font-weight:700;
+      transition:.3s;
+      background:rgba(5,6,8,0.35);
+      box-shadow:0 10px 30px rgba(0,0,0,.18);
+    }
+
+    .btn.primary{
+      background:linear-gradient(180deg, #deb55a, #b98c34);
+      color:#070707;
+    }
+
+    .btn:hover{
+      transform:translateY(-4px);
+      box-shadow:0 18px 35px rgba(213,173,85,.17);
+    }
+
+    .hero-panel{
+      margin-top:34px;
+      max-width:440px;
+      background:rgba(10,12,16,0.68);
+      border:1px solid rgba(213,173,85,0.18);
+      border-left:4px solid var(--gold);
+      padding:18px 18px 16px;
+      backdrop-filter:blur(10px);
+      box-shadow:0 25px 50px rgba(0,0,0,.28);
+    }
+
+    .hero-panel small{
+      display:block;
+      color:var(--gold);
+      letter-spacing:3px;
+      text-transform:uppercase;
+      font-weight:700;
+      margin-bottom:8px;
+    }
+
+    .hero-panel p{
+      font-size:23px;
+      color:#edf0f3;
+      line-height:1.2;
+    }
+
+    .hero-panel span{
+      display:block;
+      margin-top:8px;
+      color:#9ca5b0;
+      font-size:14px;
+      letter-spacing:2px;
+      text-transform:uppercase;
+    }
+
+    /* TICKER */
+    .marquee{
+      background:linear-gradient(90deg, #b2842b, #dfb45b, #b2842b);
+      color:#090909;
+      overflow:hidden;
+      white-space:nowrap;
+      font-family:"Teko",sans-serif;
+      font-size:28px;
+      font-weight:600;
+      letter-spacing:3px;
+      padding:7px 0;
+      box-shadow:0 10px 24px rgba(0,0,0,.22);
+    }
+
+    .marquee div{
+      display:inline-block;
+      min-width:200%;
+      animation:scroll 22s linear infinite;
+    }
+
+    @keyframes scroll{
+      to{ transform:translateX(-50%); }
+    }
+
+    /* MAIN */
+    main{
+      max-width:1280px;
+      margin:auto;
+      padding:25px 24px 110px;
+    }
+
+    section{
+      margin-top:110px;
+    }
+
+    .mini-title{
+      color:var(--gold);
+      text-transform:uppercase;
+      letter-spacing:4px;
+      font-size:14px;
+      font-weight:700;
+    }
+
+    .title{
+      font-family:"Black Ops One",sans-serif;
+      font-size:clamp(40px, 6vw, 74px);
+      line-height:1;
+      text-transform:uppercase;
+      margin:10px 0 36px;
+      text-shadow:0 8px 20px rgba(0,0,0,0.25);
+    }
+
+    /* GLASS PANEL STYLE */
+    .glass{
+      background:linear-gradient(180deg, rgba(13,16,21,.82), rgba(7,9,12,.92));
+      border:1px solid rgba(213,173,85,0.13);
+      backdrop-filter:blur(8px);
+      box-shadow:
+        0 18px 40px rgba(0,0,0,.35),
+        inset 0 1px 0 rgba(255,255,255,.02);
+    }
+
+    /* SCHEDULE */
+    .games{
+      display:grid;
+      grid-template-columns:1.5fr 1fr;
+      gap:22px;
+    }
+
+    .game-main{
+      min-height:420px;
+      padding:36px;
+      position:relative;
+      overflow:hidden;
+      display:flex;
+      flex-direction:column;
+      justify-content:flex-end;
+      background:
+        linear-gradient(to top, rgba(4,5,7,0.94) 8%, rgba(4,5,7,0.2)),
+        url("https://images.unsplash.com/photo-1514565131-fce0801e5785?auto=format&fit=crop&w=1600&q=80");
+      background-size:cover;
+      background-position:center;
+      transition:.35s;
+    }
+
+    .game-main:hover{
+      transform:translateY(-6px);
+      border-color:rgba(213,173,85,.35);
+    }
+
+    .game-main::before{
+      content:"LATEST RESULT";
+      position:absolute;
+      top:24px;
+      left:24px;
+      color:var(--gold);
+      font-size:14px;
+      letter-spacing:3px;
+      font-weight:700;
+      text-transform:uppercase;
+    }
+
+    .final-score{
+      position:absolute;
+      top:18px;
+      right:28px;
+      font-family:"Teko",sans-serif;
+      font-size:92px;
+      line-height:.85;
+      color:rgba(213,173,85,.86);
+      text-shadow:0 8px 24px rgba(0,0,0,.35);
+    }
+
+    .match{
+      font-family:"Teko",sans-serif;
+      font-size:74px;
+      line-height:.82;
+      font-weight:600;
+      text-transform:uppercase;
+      text-shadow:0 8px 20px rgba(0,0,0,.35);
+    }
+
+    .match strong{
+      color:var(--gold);
+    }
+
+    .game-main p{
+      color:#c2c8d0;
+      font-size:18px;
+      letter-spacing:2px;
+      margin-top:14px;
+      text-transform:uppercase;
+    }
+
+    .side-games{
+      display:grid;
+      gap:22px;
+    }
+
+    .small-game{
+      min-height:199px;
+      padding:28px;
+      display:flex;
+      flex-direction:column;
+      justify-content:center;
+      transition:.28s;
+      position:relative;
+      overflow:hidden;
+    }
+
+    .small-game:hover{
+      transform:translateX(6px);
+      border-color:rgba(213,173,85,.35);
+    }
+
+    .small-game span{
+      color:var(--gold);
+      font-size:13px;
+      letter-spacing:3px;
+      font-weight:700;
+      text-transform:uppercase;
+    }
+
+    .small-game h3{
+      font-family:"Teko",sans-serif;
+      font-size:48px;
+      line-height:.92;
+      margin-top:10px;
+      text-transform:uppercase;
+    }
+
+    .small-game p{
+      color:#abb4bf;
+      margin-top:8px;
+      font-size:18px;
+    }
+
+    /* ROSTER */
+    .roster{
+      display:flex;
+      gap:20px;
+      overflow-x:auto;
+      padding-bottom:18px;
+      scroll-snap-type:x mandatory;
+    }
+
+    .roster::-webkit-scrollbar{
+      height:7px;
+    }
+
+    .roster::-webkit-scrollbar-thumb{
+      background:var(--gold);
+      border-radius:20px;
+    }
+
+    .player{
+      min-width:330px;
+      height:520px;
+      position:relative;
+      overflow:hidden;
+      scroll-snap-align:start;
+      transition:.35s;
+      background:
+        linear-gradient(to top, rgba(5,6,8,0.95) 18%, rgba(5,6,8,0.18)),
+        url("https://images.unsplash.com/photo-1517466787929-bc90951d0974?auto=format&fit=crop&w=1000&q=80");
+      background-size:cover;
+      background-position:center;
+    }
+
+    .player:nth-child(2){
+      background:
+        linear-gradient(to top, rgba(5,6,8,0.95) 18%, rgba(5,6,8,0.18)),
+        url("https://images.unsplash.com/photo-1519996529931-28324d5a630e?auto=format&fit=crop&w=1000&q=80");
+      background-size:cover;
+      background-position:center;
+    }
+
+    .player:nth-child(3){
+      background:
+        linear-gradient(to top, rgba(5,6,8,0.95) 18%, rgba(5,6,8,0.18)),
+        url("https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&w=1000&q=80");
+      background-size:cover;
+      background-position:center;
+    }
+
+    .player:nth-child(4){
+      background:
+        linear-gradient(to top, rgba(5,6,8,0.95) 18%, rgba(5,6,8,0.18)),
+        url("https://images.unsplash.com/photo-1521412644187-c49fa049e84d?auto=format&fit=crop&w=1000&q=80");
+      background-size:cover;
+      background-position:center;
+    }
+
+    .player:hover{
+      transform:translateY(-10px);
+      border-color:rgba(213,173,85,.36);
+      box-shadow:0 24px 60px rgba(0,0,0,.55);
+    }
+
+    .player::before{
+      content:"";
+      position:absolute;
+      inset:0;
+      background:
+        linear-gradient(to top, rgba(5,6,8,1) 16%, rgba(5,6,8,.1) 45%),
+        radial-gradient(circle at 70% 20%, rgba(213,173,85,.14), transparent 18%);
+    }
+
+    .player-number{
+      position:absolute;
+      top:-8px;
+      right:10px;
+      font-family:"Teko",sans-serif;
+      font-size:170px;
+      line-height:1;
+      color:rgba(213,173,85,.18);
+      z-index:2;
+    }
+
+    .player-info{
+      position:absolute;
+      left:0;
+      right:0;
+      bottom:0;
+      padding:24px;
+      z-index:3;
+    }
+
+    .player-info h3{
+      font-family:"Teko",sans-serif;
+      font-size:48px;
+      line-height:.9;
+      color:var(--gold);
+      text-transform:uppercase;
+      text-shadow:0 4px 16px rgba(0,0,0,.3);
+    }
+
+    .player-info p{
+      color:#c4c9cf;
+      letter-spacing:3px;
+      font-size:13px;
+      text-transform:uppercase;
+      margin-top:4px;
+    }
+
+    .socials{
+      display:flex;
+      gap:8px;
+      flex-wrap:wrap;
+      margin-top:14px;
+    }
+
+    .socials a{
+      padding:6px 10px;
+      border:1px solid rgba(213,173,85,.32);
+      background:rgba(0,0,0,.25);
+      font-size:12px;
+      font-weight:700;
+      letter-spacing:1px;
+      transition:.22s;
+    }
+
+    .socials a:hover{
+      background:var(--gold);
+      color:#090909;
+    }
+
+    /* STATS */
+    .stats{
+      display:grid;
+      grid-template-columns:repeat(4,1fr);
+      gap:1px;
+      background:rgba(213,173,85,.14);
+      border:1px solid rgba(213,173,85,.14);
+      overflow:hidden;
+    }
+
+    .stat{
+      padding:54px 18px;
+      text-align:center;
+      background:
+        linear-gradient(180deg, rgba(14,17,21,.96), rgba(7,9,12,.96));
+      transition:.28s;
+    }
+
+    .stat:hover{
+      background:linear-gradient(180deg, rgba(19,24,30,.96), rgba(10,13,17,.96));
+      transform:scale(1.03);
+      z-index:2;
+    }
+
+    .stat-value{
+      font-family:"Teko",sans-serif;
+      font-size:100px;
+      line-height:.78;
+      font-weight:600;
+      color:var(--gold);
+      text-shadow:0 6px 18px rgba(0,0,0,.2);
+    }
+
+    .stat-label{
+      color:#aeb4be;
+      text-transform:uppercase;
+      letter-spacing:3px;
+      font-size:12px;
+      font-weight:700;
+      margin-top:16px;
+    }
+
+    /* MEDIA */
+    .media-grid{
+      display:grid;
+      grid-template-columns:2fr 1fr;
+      grid-template-rows:260px 260px;
+      gap:18px;
+    }
+
+    .media{
+      position:relative;
+      overflow:hidden;
+      display:flex;
+      align-items:flex-end;
+      padding:26px;
+      transition:.3s;
+      background:
+        linear-gradient(to top, rgba(4,5,7,.96), rgba(4,5,7,.15)),
+        url("https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?auto=format&fit=crop&w=1400&q=80");
+      background-size:cover;
+      background-position:center;
+    }
+
+    .media:nth-child(2){
+      background:
+        linear-gradient(to top, rgba(4,5,7,.96), rgba(4,5,7,.15)),
+        url("https://images.unsplash.com/photo-1511512578047-dfb367046420?auto=format&fit=crop&w=1400&q=80");
+      background-size:cover;
+      background-position:center;
+    }
+
+    .media:nth-child(3){
+      background:
+        linear-gradient(to top, rgba(4,5,7,.96), rgba(4,5,7,.15)),
+        url("https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=1400&q=80");
+      background-size:cover;
+      background-position:center;
+    }
+
+    .media:first-child{
+      grid-row:1 / 3;
+    }
+
+    .media:hover{
+      transform:scale(1.015);
+      border-color:rgba(213,173,85,.35);
+    }
+
+    .media h3{
+      font-family:"Teko",sans-serif;
+      font-size:50px;
+      line-height:.9;
+      color:var(--gold);
+      text-transform:uppercase;
+      text-shadow:0 5px 16px rgba(0,0,0,.35);
+    }
+
+    /* FOOTER */
+    footer{
+      margin-top:120px;
+      border-top:1px solid rgba(213,173,85,.15);
+      text-align:center;
+      padding:50px 20px;
+      color:#777f89;
+      letter-spacing:2px;
+    }
+
+    footer strong{
+      display:block;
+      color:var(--gold);
+      font-family:"Black Ops One",sans-serif;
+      font-size:21px;
+      margin-bottom:14px;
+    }
+
+    /* REVEAL */
+    .reveal{
+      opacity:0;
+      transform:translateY(42px);
+      transition:opacity .8s ease, transform .8s ease;
+    }
+
+    .reveal.visible{
+      opacity:1;
+      transform:translateY(0);
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 900px){
+      .menu{
+        display:none;
+      }
+
+      .games{
+        grid-template-columns:1fr;
+      }
+
+      .stats{
+        grid-template-columns:1fr 1fr;
+      }
+
+      .media-grid{
+        grid-template-columns:1fr;
+        grid-template-rows:auto;
+      }
+
+      .media,
+      .media:first-child{
+        grid-row:auto;
+        min-height:250px;
+      }
+
+      .hero h1{
+        font-size:68px;
+      }
+
+      .tagline{
+        font-size:25px;
+      }
+
+      .hero-text{
+        font-size:19px;
+      }
+
+      .final-score{
+        font-size:78px;
+      }
+
+      .match{
+        font-size:58px;
+      }
+    }
+
+    @media (max-width: 600px){
+      .hero-content{
+        padding:120px 20px 90px;
+      }
+
+      main{
+        padding:20px 20px 90px;
+      }
+
+      .title{
+        font-size:42px;
+      }
+
+      .stats{
+        grid-template-columns:1fr;
+      }
+
+      .player{
+        min-width:285px;
+      }
+
+      .tagline{
+        font-size:22px;
+      }
+
+      .hero-panel p{
+        font-size:20px;
+      }
+    }
+  </style>
 </head>
-
-
 <body>
 
-
-<header>
-
-<nav>
-
-<div class="brand">
-NY <span>GUARDIANS</span>
-</div>
-
-<div class="menu">
-
-<a href="#home">Home</a>
-<a href="#schedule">Schedule</a>
-<a href="#roster">Roster</a>
-<a href="#stats">Stats</a>
-<a href="#media">Media</a>
-
-</div>
-
-</nav>
-
-</header>
-
-
-
-<section class="hero" id="home">
-
-<div class="background-word">
-GUARDIANS
-</div>
-
-<div class="light"></div>
-
-
-<div class="skyline">
-
-<div class="building b1"></div>
-<div class="building b2"></div>
-<div class="building b3"></div>
-<div class="building b4"></div>
-<div class="building b5"></div>
-<div class="building b6"></div>
-<div class="building b7"></div>
-<div class="building b8"></div>
-<div class="building b9"></div>
-
-</div>
-
-
-<div class="hero-content">
-
-<div class="location">
-Brooklyn • New York
-</div>
-
-<h1>
-New York
-<span>Guardians</span>
-</h1>
-
-<div class="tagline">
-Built Under City Lights • Protect The City
-</div>
-
-
-<div class="hero-buttons">
-
-<a href="#roster" class="btn primary">
-Meet The Team
-</a>
-
-<a href="#schedule" class="btn">
-Game Schedule
-</a>
-
-</div>
-
-</div>
-
-</section>
-
-
-
-<div class="marquee">
-
-<div>
-
-NEW YORK GUARDIANS • ESG FOOTBALL • PROTECT THE CITY • BROOKLYN NIGHTS •
-NEW YORK GUARDIANS • ESG FOOTBALL • PROTECT THE CITY • BROOKLYN NIGHTS •
-NEW YORK GUARDIANS • ESG FOOTBALL • PROTECT THE CITY • BROOKLYN NIGHTS •
-
-</div>
-
-</div>
-
-
-
-<main>
-
-
-<section id="schedule" class="reveal">
-
-<div class="mini-title">
-Under The Lights
-</div>
-
-<h2 class="title">
-Game Day
-</h2>
-
-
-<div class="games">
-
-
-<div class="game-main">
-
-<div class="final-score">
-28–0
-</div>
-
-<div class="match">
-
-<strong>GUARDIANS</strong>
-<br>
-
-VS TRITONS
-
-</div>
-
-<p>
-NEW YORK • FINAL
-</p>
-
-</div>
-
-
-<div class="side-games">
-
-<div class="small-game">
-
-<span>
-Next Matchup
-</span>
-
-<h3>
-GUARDIANS VS TBD
-</h3>
-
-<p>
-Date & time coming soon
-</p>
-
-</div>
-
-
-<div class="small-game">
-
-<span>
-Season Record
-</span>
-
-<h3>
-0 — 0
-</h3>
-
-<p>
-New season. New city to protect.
-</p>
-
-</div>
-
-</div>
-
-</div>
-
-</section>
-
-
-
-<section id="roster" class="reveal">
-
-<div class="mini-title">
-The Ones Wearing The Shield
-</div>
-
-<h2 class="title">
-Guardians Roster
-</h2>
-
-
-<div class="roster">
-
-
-<div class="player">
-
-<div class="player-number">
-11
-</div>
-
-<div class="player-silhouette"></div>
-
-<div class="player-info">
-
-<h3>
-Som3body_white
-</h3>
-
-<p>
-WR / DB
-</p>
-
-<div class="socials">
-
-<a href="#">Twitch</a>
-<a href="#">YouTube</a>
-<a href="#">X</a>
-<a href="#">Instagram</a>
-
-</div>
-
-</div>
-
-</div>
-
-
-
-<div class="player">
-
-<div class="player-number">
-00
-</div>
-
-<div class="player-silhouette"></div>
-
-<div class="player-info">
-
-<h3>
-Player Two
-</h3>
-
-<p>
-Position
-</p>
-
-</div>
-
-</div>
-
-
-
-<div class="player">
-
-<div class="player-number">
-00
-</div>
-
-<div class="player-silhouette"></div>
-
-<div class="player-info">
-
-<h3>
-Player Three
-</h3>
-
-<p>
-Position
-</p>
-
-</div>
-
-</div>
-
-
-
-<div class="player">
-
-<div class="player-number">
-00
-</div>
-
-<div class="player-silhouette"></div>
-
-<div class="player-info">
-
-<h3>
-Player Four
-</h3>
-
-<p>
-Position
-</p>
-
-</div>
-
-</div>
-
-
-</div>
-
-</section>
-
-
-
-<section id="stats" class="reveal">
-
-<div class="mini-title">
-Numbers From The City
-</div>
-
-<h2 class="title">
-Som3body_white
-</h2>
-
-
-<div class="stats">
-
-
-<div class="stat">
-
-<div class="stat-value" data-target="10">
-0
-</div>
-
-<div class="stat-label">
-Receptions
-</div>
-
-</div>
-
-
-<div class="stat">
-
-<div class="stat-value" data-target="410">
-0
-</div>
-
-<div class="stat-label">
-Receiving Yards
-</div>
-
-</div>
-
-
-<div class="stat">
-
-<div class="stat-value" data-target="7">
-0
-</div>
-
-<div class="stat-label">
-Touchdowns
-</div>
-
-</div>
-
-
-<div class="stat">
-
-<div class="stat-value" data-target="3">
-0
-</div>
-
-<div class="stat-label">
-Interceptions
-</div>
-
-</div>
-
-
-</div>
-
-</section>
-
-
-
-<section id="media" class="reveal">
-
-<div class="mini-title">
-Straight From New York
-</div>
-
-<h2 class="title">
-Guardians Media
-</h2>
-
-
-<div class="media-grid">
-
-
-<div class="media">
-
-<h3>
-Game Highlights
-</h3>
-
-</div>
-
-
-<div class="media">
-
-<h3>
-Twitch Clips
-</h3>
-
-</div>
-
-
-<div class="media">
-
-<h3>
-Team Socials
-</h3>
-
-</div>
-
-
-</div>
-
-</section>
-
-
-</main>
-
-
-
-<footer>
-
-<strong>
-NEW YORK GUARDIANS
-</strong>
-
-<br><br>
-
-ESG Football • Protect The City
-
-</footer>
-
-
-
-<script>
-
-/* SCROLL ANIMATIONS */
-
-const reveals =
-document.querySelectorAll(".reveal");
-
-const observer =
-new IntersectionObserver(entries => {
-
-entries.forEach(entry => {
-
-if(entry.isIntersecting){
-
-entry.target.classList.add("visible");
-
-}
-
-});
-
-},{
-threshold:.15
-});
-
-reveals.forEach(el =>
-observer.observe(el)
-);
-
-
-
-/* ANIMATED STATS */
-
-const counters =
-document.querySelectorAll(".stat-value");
-
-let statsStarted = false;
-
-const statsSection =
-document.querySelector("#stats");
-
-const statsObserver =
-new IntersectionObserver(entries => {
-
-entries.forEach(entry => {
-
-if(
-entry.isIntersecting &&
-!statsStarted
-){
-
-statsStarted = true;
-
-counters.forEach(counter => {
-
-const target =
-+counter.dataset.target;
-
-let value = 0;
-
-const step =
-Math.max(
-1,
-Math.ceil(target / 45)
-);
-
-const update = () => {
-
-value += step;
-
-if(value > target){
-value = target;
-}
-
-counter.textContent =
-value;
-
-if(value < target){
-
-requestAnimationFrame(update);
-
-}
-
-};
-
-update();
-
-});
-
-}
-
-});
-
-},{
-threshold:.35
-});
-
-statsObserver.observe(statsSection);
-
-</script>
-
+  <header>
+    <div class="nav">
+      <div class="brand">NY <span>Guardians</span></div>
+
+      <div class="menu">
+        <a href="#home">Home</a>
+        <a href="#schedule">Schedule</a>
+        <a href="#roster">Roster</a>
+        <a href="#stats">Stats</a>
+        <a href="#media">Media</a>
+      </div>
+    </div>
+  </header>
+
+  <section class="hero" id="home">
+    <div class="hero-overlay"></div>
+    <div class="hero-glow"></div>
+    <div class="hero-fog"></div>
+
+    <div class="hero-content">
+      <div class="eyebrow">Brooklyn • New York City • Night Mode</div>
+
+      <h1>
+        New York
+        <span>Guardians</span>
+      </h1>
+
+      <div class="tagline">Built Under City Lights • Protect The City</div>
+
+      <div class="hero-text">
+        A darker, layered New York home for the Guardians — built with real city-night energy, gold-lit atmosphere, and a sharper presentation for roster, stats, schedule, and media.
+      </div>
+
+      <div class="hero-buttons">
+        <a href="#roster" class="btn primary">Meet The Team</a>
+        <a href="#schedule" class="btn">View Schedule</a>
+      </div>
+
+      <div class="hero-panel">
+        <small>Team Identity</small>
+        <p>Brooklyn grit. Night lights. Gold pressure.</p>
+        <span>New York Guardians • ESG Football</span>
+      </div>
+    </div>
+  </section>
+
+  <div class="marquee">
+    <div>
+      NEW YORK GUARDIANS • ESG FOOTBALL • PROTECT THE CITY • BROOKLYN NIGHTS • NEW YORK GUARDIANS • ESG FOOTBALL • PROTECT THE CITY • BROOKLYN NIGHTS •
+    </div>
+  </div>
+
+  <main>
+
+    <section id="schedule" class="reveal">
+      <div class="mini-title">Under The Lights</div>
+      <h2 class="title">Game Day</h2>
+
+      <div class="games">
+        <div class="game-main glass">
+          <div class="final-score">28–0</div>
+
+          <div class="match">
+            <strong>Guardians</strong><br>
+            vs Tritons
+          </div>
+
+          <p>New York • Final</p>
+        </div>
+
+        <div class="side-games">
+          <div class="small-game glass">
+            <span>Next Matchup</span>
+            <h3>Guardians vs TBD</h3>
+            <p>Date & time coming soon</p>
+          </div>
+
+          <div class="small-game glass">
+            <span>Season Record</span>
+            <h3>0 — 0</h3>
+            <p>New season. New city to protect.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="roster" class="reveal">
+      <div class="mini-title">The Ones Wearing The Shield</div>
+      <h2 class="title">Guardians Roster</h2>
+
+      <div class="roster">
+        <div class="player glass">
+          <div class="player-number">11</div>
+          <div class="player-info">
+            <h3>Som3body_white</h3>
+            <p>WR / DB</p>
+            <div class="socials">
+              <a href="#">Twitch</a>
+              <a href="#">YouTube</a>
+              <a href="#">X</a>
+              <a href="#">Instagram</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="player glass">
+          <div class="player-number">00</div>
+          <div class="player-info">
+            <h3>Player Two</h3>
+            <p>Position</p>
+            <div class="socials">
+              <a href="#">Twitch</a>
+              <a href="#">X</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="player glass">
+          <div class="player-number">00</div>
+          <div class="player-info">
+            <h3>Player Three</h3>
+            <p>Position</p>
+            <div class="socials">
+              <a href="#">Twitch</a>
+              <a href="#">X</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="player glass">
+          <div class="player-number">00</div>
+          <div class="player-info">
+            <h3>Player Four</h3>
+            <p>Position</p>
+            <div class="socials">
+              <a href="#">Twitch</a>
+              <a href="#">X</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="stats" class="reveal">
+      <div class="mini-title">Numbers From The City</div>
+      <h2 class="title">Som3body_white</h2>
+
+      <div class="stats">
+        <div class="stat">
+          <div class="stat-value" data-target="10">0</div>
+          <div class="stat-label">Receptions</div>
+        </div>
+
+        <div class="stat">
+          <div class="stat-value" data-target="410">0</div>
+          <div class="stat-label">Receiving Yards</div>
+        </div>
+
+        <div class="stat">
+          <div class="stat-value" data-target="7">0</div>
+          <div class="stat-label">Touchdowns</div>
+        </div>
+
+        <div class="stat">
+          <div class="stat-value" data-target="3">0</div>
+          <div class="stat-label">Interceptions</div>
+        </div>
+      </div>
+    </section>
+
+    <section id="media" class="reveal">
+      <div class="mini-title">Straight From New York</div>
+      <h2 class="title">Guardians Media</h2>
+
+      <div class="media-grid">
+        <div class="media glass">
+          <h3>Game Highlights</h3>
+        </div>
+
+        <div class="media glass">
+          <h3>Twitch Clips</h3>
+        </div>
+
+        <div class="media glass">
+          <h3>Team Socials</h3>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    <strong>New York Guardians</strong>
+    ESG Football • Protect The City
+  </footer>
+
+  <script>
+    /* reveal on scroll */
+    const reveals = document.querySelectorAll(".reveal");
+
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if(entry.isIntersecting){
+          entry.target.classList.add("visible");
+        }
+      });
+    }, { threshold: 0.15 });
+
+    reveals.forEach((el) => revealObserver.observe(el));
+
+    /* animated stat numbers */
+    const counters = document.querySelectorAll(".stat-value");
+    const statsSection = document.querySelector("#stats");
+    let statsStarted = false;
+
+    const statsObserver = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if(entry.isIntersecting && !statsStarted){
+          statsStarted = true;
+
+          counters.forEach((counter) => {
+            const target = +counter.dataset.target;
+            let value = 0;
+            const step = Math.max(1, Math.ceil(target / 45));
+
+            const update = () => {
+              value += step;
+              if(value > target) value = target;
+              counter.textContent = value;
+              if(value < target){
+                requestAnimationFrame(update);
+              }
+            };
+
+            update();
+          });
+        }
+      });
+    }, { threshold: 0.35 });
+
+    statsObserver.observe(statsSection);
+  </script>
 
 </body>
 </html>
