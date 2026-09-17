@@ -1,1105 +1,3127 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>New York Guardians | ESG Football</title>
-
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;500;600;700&family=Black+Ops+One&family=Teko:wght@400;500;600;700&display=swap" rel="stylesheet">
-
-  <style>
-    :root{
-      --gold:#d5ad55;
-      --gold-dark:#8a6420;
-      --bg:#040507;
-      --bg2:#0a0d12;
-      --panel:rgba(10,12,16,0.78);
-      --panel-strong:rgba(6,8,11,0.9);
-      --white:#f4f4f4;
-      --muted:#a9b0bb;
-      --line:rgba(213,173,85,0.18);
-      --shadow:rgba(0,0,0,0.55);
-    }
-
-    *{
-      margin:0;
-      padding:0;
-      box-sizing:border-box;
-    }
-
-    html{
-      scroll-behavior:smooth;
-    }
-
-    body{
-      font-family:"Barlow Condensed",sans-serif;
-      background:
-        radial-gradient(circle at top left, rgba(213,173,85,0.06), transparent 28%),
-        linear-gradient(to bottom, #030405, #06080b 45%, #030405);
-      color:var(--white);
-      overflow-x:hidden;
-    }
-
-    a{
-      text-decoration:none;
-      color:inherit;
-    }
-
-    img{
-      max-width:100%;
-      display:block;
-    }
-
-    /* subtle texture */
-    body::before{
-      content:"";
-      position:fixed;
-      inset:0;
-      pointer-events:none;
-      opacity:.06;
-      z-index:999;
-      background-image:
-        repeating-linear-gradient(
-          0deg,
-          rgba(255,255,255,.06) 0px,
-          rgba(255,255,255,.06) 1px,
-          transparent 1px,
-          transparent 3px
-        );
-    }
-
-    /* NAV */
-    header{
-      position:fixed;
-      top:0;
-      left:0;
-      width:100%;
-      z-index:1000;
-      background:rgba(5,6,8,0.58);
-      backdrop-filter:blur(14px);
-      border-bottom:1px solid var(--line);
-    }
-
-    .nav{
-      max-width:1280px;
-      margin:auto;
-      padding:16px 24px;
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:20px;
-    }
-
-    .brand{
-      font-family:"Black Ops One",sans-serif;
-      font-size:21px;
-      letter-spacing:1px;
-      text-transform:uppercase;
-    }
-
-    .brand span{
-      color:var(--gold);
-    }
-
-    .menu{
-      display:flex;
-      gap:26px;
-      flex-wrap:wrap;
-    }
-
-    .menu a{
-      font-size:14px;
-      font-weight:600;
-      letter-spacing:2px;
-      text-transform:uppercase;
-      position:relative;
-      transition:.25s;
-    }
-
-    .menu a::after{
-      content:"";
-      position:absolute;
-      left:0;
-      bottom:-8px;
-      width:0;
-      height:2px;
-      background:var(--gold);
-      transition:.25s;
-    }
-
-    .menu a:hover{
-      color:var(--gold);
-    }
-
-    .menu a:hover::after{
-      width:100%;
-    }
-
-    /* HERO */
-    .hero{
-      min-height:100vh;
-      position:relative;
-      overflow:hidden;
-      display:flex;
-      align-items:center;
-      isolation:isolate;
-      background:#050608;
-    }
-
-    /* Layer 1: night sky / skyline */
-    .hero::before{
-      content:"";
-      position:absolute;
-      inset:0;
-      background:
-        linear-gradient(to bottom, rgba(4,6,10,0.5), rgba(4,5,7,0.85)),
-        url("https://images.unsplash.com/photo-1518391846015-55a9cc003b25?auto=format&fit=crop&w=1800&q=80");
-      background-size:cover;
-      background-position:center;
-      transform:scale(1.03);
-      opacity:.95;
-      z-index:-5;
-    }
-
-    /* Layer 2: bridge / city layer */
-    .hero::after{
-      content:"";
-      position:absolute;
-      left:0;
-      right:0;
-      bottom:-2%;
-      height:58%;
-      background:
-        linear-gradient(to top, rgba(3,4,5,1), rgba(3,4,5,0.15)),
-        url("https://images.unsplash.com/photo-1500916434205-0c77489c6cf7?auto=format&fit=crop&w=1800&q=80");
-      background-size:cover;
-      background-position:center bottom;
-      opacity:.34;
-      z-index:-4;
-    }
-
-    .hero-overlay{
-      position:absolute;
-      inset:0;
-      background:
-        linear-gradient(90deg, rgba(4,5,7,0.9) 0%, rgba(4,5,7,0.68) 38%, rgba(4,5,7,0.86) 100%);
-      z-index:-3;
-    }
-
-    .hero-glow{
-      position:absolute;
-      inset:0;
-      z-index:-2;
-      background:
-        radial-gradient(circle at 70% 26%, rgba(213,173,85,.16), transparent 22%),
-        radial-gradient(circle at 28% 78%, rgba(213,173,85,.10), transparent 20%),
-        radial-gradient(circle at 82% 75%, rgba(255,180,60,.06), transparent 18%);
-      animation:glowShift 8s ease-in-out infinite alternate;
-    }
-
-    @keyframes glowShift{
-      from{ transform:translateY(0); }
-      to{ transform:translateY(-10px); }
-    }
-
-    .hero-fog{
-      position:absolute;
-      left:-10%;
-      right:-10%;
-      bottom:0;
-      height:34%;
-      z-index:-1;
-      background:
-        radial-gradient(circle at 20% 65%, rgba(255,255,255,.06), transparent 20%),
-        radial-gradient(circle at 40% 80%, rgba(255,255,255,.05), transparent 22%),
-        radial-gradient(circle at 70% 75%, rgba(255,255,255,.04), transparent 24%),
-        radial-gradient(circle at 90% 70%, rgba(255,255,255,.05), transparent 16%);
-      filter:blur(22px);
-      animation:fogMove 16s ease-in-out infinite alternate;
-    }
-
-    @keyframes fogMove{
-      from{ transform:translateX(-1%) translateY(0); }
-      to{ transform:translateX(2%) translateY(-8px); }
-    }
-
-    .hero-content{
-      width:100%;
-      max-width:1280px;
-      margin:auto;
-      padding:130px 24px 100px;
-      position:relative;
-      z-index:5;
-    }
-
-    .eyebrow{
-      display:inline-block;
-      color:var(--gold);
-      border-left:4px solid var(--gold);
-      padding:7px 0 7px 12px;
-      font-size:14px;
-      font-weight:600;
-      letter-spacing:4px;
-      text-transform:uppercase;
-      margin-bottom:20px;
-      background:linear-gradient(to right, rgba(213,173,85,0.08), transparent);
-    }
-
-    .hero h1{
-      font-family:"Black Ops One",sans-serif;
-      font-size:clamp(62px, 10vw, 138px);
-      line-height:.86;
-      text-transform:uppercase;
-      max-width:780px;
-      text-shadow:0 10px 35px rgba(0,0,0,0.45);
-    }
-
-    .hero h1 span{
-      color:var(--gold);
-      display:block;
-      text-shadow:
-        0 0 24px rgba(213,173,85,.15),
-        0 8px 30px rgba(0,0,0,.35);
-    }
-
-    .tagline{
-      font-family:"Teko",sans-serif;
-      font-size:30px;
-      letter-spacing:2px;
-      text-transform:uppercase;
-      color:#d7dbe1;
-      margin-top:26px;
-    }
-
-    .hero-text{
-      max-width:620px;
-      margin-top:14px;
-      font-size:22px;
-      color:#c2c8d0;
-      line-height:1.45;
-    }
-
-    .hero-buttons{
-      margin-top:34px;
-      display:flex;
-      gap:14px;
-      flex-wrap:wrap;
-    }
-
-    .btn{
-      padding:14px 24px;
-      border:1px solid var(--gold);
-      text-transform:uppercase;
-      letter-spacing:2px;
-      font-weight:700;
-      transition:.3s;
-      background:rgba(5,6,8,0.35);
-      box-shadow:0 10px 30px rgba(0,0,0,.18);
-    }
-
-    .btn.primary{
-      background:linear-gradient(180deg, #deb55a, #b98c34);
-      color:#070707;
-    }
-
-    .btn:hover{
-      transform:translateY(-4px);
-      box-shadow:0 18px 35px rgba(213,173,85,.17);
-    }
-
-    .hero-panel{
-      margin-top:34px;
-      max-width:440px;
-      background:rgba(10,12,16,0.68);
-      border:1px solid rgba(213,173,85,0.18);
-      border-left:4px solid var(--gold);
-      padding:18px 18px 16px;
-      backdrop-filter:blur(10px);
-      box-shadow:0 25px 50px rgba(0,0,0,.28);
-    }
-
-    .hero-panel small{
-      display:block;
-      color:var(--gold);
-      letter-spacing:3px;
-      text-transform:uppercase;
-      font-weight:700;
-      margin-bottom:8px;
-    }
-
-    .hero-panel p{
-      font-size:23px;
-      color:#edf0f3;
-      line-height:1.2;
-    }
-
-    .hero-panel span{
-      display:block;
-      margin-top:8px;
-      color:#9ca5b0;
-      font-size:14px;
-      letter-spacing:2px;
-      text-transform:uppercase;
-    }
-
-    /* TICKER */
-    .marquee{
-      background:linear-gradient(90deg, #b2842b, #dfb45b, #b2842b);
-      color:#090909;
-      overflow:hidden;
-      white-space:nowrap;
-      font-family:"Teko",sans-serif;
-      font-size:28px;
-      font-weight:600;
-      letter-spacing:3px;
-      padding:7px 0;
-      box-shadow:0 10px 24px rgba(0,0,0,.22);
-    }
-
-    .marquee div{
-      display:inline-block;
-      min-width:200%;
-      animation:scroll 22s linear infinite;
-    }
-
-    @keyframes scroll{
-      to{ transform:translateX(-50%); }
-    }
-
-    /* MAIN */
-    main{
-      max-width:1280px;
-      margin:auto;
-      padding:25px 24px 110px;
-    }
-
-    section{
-      margin-top:110px;
-    }
-
-    .mini-title{
-      color:var(--gold);
-      text-transform:uppercase;
-      letter-spacing:4px;
-      font-size:14px;
-      font-weight:700;
-    }
-
-    .title{
-      font-family:"Black Ops One",sans-serif;
-      font-size:clamp(40px, 6vw, 74px);
-      line-height:1;
-      text-transform:uppercase;
-      margin:10px 0 36px;
-      text-shadow:0 8px 20px rgba(0,0,0,0.25);
-    }
-
-    /* GLASS PANEL STYLE */
-    .glass{
-      background:linear-gradient(180deg, rgba(13,16,21,.82), rgba(7,9,12,.92));
-      border:1px solid rgba(213,173,85,0.13);
-      backdrop-filter:blur(8px);
-      box-shadow:
-        0 18px 40px rgba(0,0,0,.35),
-        inset 0 1px 0 rgba(255,255,255,.02);
-    }
-
-    /* SCHEDULE */
-    .games{
-      display:grid;
-      grid-template-columns:1.5fr 1fr;
-      gap:22px;
-    }
-
-    .game-main{
-      min-height:420px;
-      padding:36px;
-      position:relative;
-      overflow:hidden;
-      display:flex;
-      flex-direction:column;
-      justify-content:flex-end;
-      background:
-        linear-gradient(to top, rgba(4,5,7,0.94) 8%, rgba(4,5,7,0.2)),
-        url("https://images.unsplash.com/photo-1514565131-fce0801e5785?auto=format&fit=crop&w=1600&q=80");
-      background-size:cover;
-      background-position:center;
-      transition:.35s;
-    }
-
-    .game-main:hover{
-      transform:translateY(-6px);
-      border-color:rgba(213,173,85,.35);
-    }
-
-    .game-main::before{
-      content:"LATEST RESULT";
-      position:absolute;
-      top:24px;
-      left:24px;
-      color:var(--gold);
-      font-size:14px;
-      letter-spacing:3px;
-      font-weight:700;
-      text-transform:uppercase;
-    }
-
-    .final-score{
-      position:absolute;
-      top:18px;
-      right:28px;
-      font-family:"Teko",sans-serif;
-      font-size:92px;
-      line-height:.85;
-      color:rgba(213,173,85,.86);
-      text-shadow:0 8px 24px rgba(0,0,0,.35);
-    }
-
-    .match{
-      font-family:"Teko",sans-serif;
-      font-size:74px;
-      line-height:.82;
-      font-weight:600;
-      text-transform:uppercase;
-      text-shadow:0 8px 20px rgba(0,0,0,.35);
-    }
-
-    .match strong{
-      color:var(--gold);
-    }
-
-    .game-main p{
-      color:#c2c8d0;
-      font-size:18px;
-      letter-spacing:2px;
-      margin-top:14px;
-      text-transform:uppercase;
-    }
-
-    .side-games{
-      display:grid;
-      gap:22px;
-    }
-
-    .small-game{
-      min-height:199px;
-      padding:28px;
-      display:flex;
-      flex-direction:column;
-      justify-content:center;
-      transition:.28s;
-      position:relative;
-      overflow:hidden;
-    }
-
-    .small-game:hover{
-      transform:translateX(6px);
-      border-color:rgba(213,173,85,.35);
-    }
-
-    .small-game span{
-      color:var(--gold);
-      font-size:13px;
-      letter-spacing:3px;
-      font-weight:700;
-      text-transform:uppercase;
-    }
-
-    .small-game h3{
-      font-family:"Teko",sans-serif;
-      font-size:48px;
-      line-height:.92;
-      margin-top:10px;
-      text-transform:uppercase;
-    }
-
-    .small-game p{
-      color:#abb4bf;
-      margin-top:8px;
-      font-size:18px;
-    }
-
-    /* ROSTER */
-    .roster{
-      display:flex;
-      gap:20px;
-      overflow-x:auto;
-      padding-bottom:18px;
-      scroll-snap-type:x mandatory;
-    }
-
-    .roster::-webkit-scrollbar{
-      height:7px;
-    }
-
-    .roster::-webkit-scrollbar-thumb{
-      background:var(--gold);
-      border-radius:20px;
-    }
-
-    .player{
-      min-width:330px;
-      height:520px;
-      position:relative;
-      overflow:hidden;
-      scroll-snap-align:start;
-      transition:.35s;
-      background:
-        linear-gradient(to top, rgba(5,6,8,0.95) 18%, rgba(5,6,8,0.18)),
-        url("https://images.unsplash.com/photo-1517466787929-bc90951d0974?auto=format&fit=crop&w=1000&q=80");
-      background-size:cover;
-      background-position:center;
-    }
-
-    .player:nth-child(2){
-      background:
-        linear-gradient(to top, rgba(5,6,8,0.95) 18%, rgba(5,6,8,0.18)),
-        url("https://images.unsplash.com/photo-1519996529931-28324d5a630e?auto=format&fit=crop&w=1000&q=80");
-      background-size:cover;
-      background-position:center;
-    }
-
-    .player:nth-child(3){
-      background:
-        linear-gradient(to top, rgba(5,6,8,0.95) 18%, rgba(5,6,8,0.18)),
-        url("https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&w=1000&q=80");
-      background-size:cover;
-      background-position:center;
-    }
-
-    .player:nth-child(4){
-      background:
-        linear-gradient(to top, rgba(5,6,8,0.95) 18%, rgba(5,6,8,0.18)),
-        url("https://images.unsplash.com/photo-1521412644187-c49fa049e84d?auto=format&fit=crop&w=1000&q=80");
-      background-size:cover;
-      background-position:center;
-    }
-
-    .player:hover{
-      transform:translateY(-10px);
-      border-color:rgba(213,173,85,.36);
-      box-shadow:0 24px 60px rgba(0,0,0,.55);
-    }
-
-    .player::before{
-      content:"";
-      position:absolute;
-      inset:0;
-      background:
-        linear-gradient(to top, rgba(5,6,8,1) 16%, rgba(5,6,8,.1) 45%),
-        radial-gradient(circle at 70% 20%, rgba(213,173,85,.14), transparent 18%);
-    }
-
-    .player-number{
-      position:absolute;
-      top:-8px;
-      right:10px;
-      font-family:"Teko",sans-serif;
-      font-size:170px;
-      line-height:1;
-      color:rgba(213,173,85,.18);
-      z-index:2;
-    }
-
-    .player-info{
-      position:absolute;
-      left:0;
-      right:0;
-      bottom:0;
-      padding:24px;
-      z-index:3;
-    }
-
-    .player-info h3{
-      font-family:"Teko",sans-serif;
-      font-size:48px;
-      line-height:.9;
-      color:var(--gold);
-      text-transform:uppercase;
-      text-shadow:0 4px 16px rgba(0,0,0,.3);
-    }
-
-    .player-info p{
-      color:#c4c9cf;
-      letter-spacing:3px;
-      font-size:13px;
-      text-transform:uppercase;
-      margin-top:4px;
-    }
-
-    .socials{
-      display:flex;
-      gap:8px;
-      flex-wrap:wrap;
-      margin-top:14px;
-    }
-
-    .socials a{
-      padding:6px 10px;
-      border:1px solid rgba(213,173,85,.32);
-      background:rgba(0,0,0,.25);
-      font-size:12px;
-      font-weight:700;
-      letter-spacing:1px;
-      transition:.22s;
-    }
-
-    .socials a:hover{
-      background:var(--gold);
-      color:#090909;
-    }
-
-    /* STATS */
-    .stats{
-      display:grid;
-      grid-template-columns:repeat(4,1fr);
-      gap:1px;
-      background:rgba(213,173,85,.14);
-      border:1px solid rgba(213,173,85,.14);
-      overflow:hidden;
-    }
-
-    .stat{
-      padding:54px 18px;
-      text-align:center;
-      background:
-        linear-gradient(180deg, rgba(14,17,21,.96), rgba(7,9,12,.96));
-      transition:.28s;
-    }
-
-    .stat:hover{
-      background:linear-gradient(180deg, rgba(19,24,30,.96), rgba(10,13,17,.96));
-      transform:scale(1.03);
-      z-index:2;
-    }
-
-    .stat-value{
-      font-family:"Teko",sans-serif;
-      font-size:100px;
-      line-height:.78;
-      font-weight:600;
-      color:var(--gold);
-      text-shadow:0 6px 18px rgba(0,0,0,.2);
-    }
-
-    .stat-label{
-      color:#aeb4be;
-      text-transform:uppercase;
-      letter-spacing:3px;
-      font-size:12px;
-      font-weight:700;
-      margin-top:16px;
-    }
-
-    /* MEDIA */
-    .media-grid{
-      display:grid;
-      grid-template-columns:2fr 1fr;
-      grid-template-rows:260px 260px;
-      gap:18px;
-    }
-
-    .media{
-      position:relative;
-      overflow:hidden;
-      display:flex;
-      align-items:flex-end;
-      padding:26px;
-      transition:.3s;
-      background:
-        linear-gradient(to top, rgba(4,5,7,.96), rgba(4,5,7,.15)),
-        url("https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?auto=format&fit=crop&w=1400&q=80");
-      background-size:cover;
-      background-position:center;
-    }
-
-    .media:nth-child(2){
-      background:
-        linear-gradient(to top, rgba(4,5,7,.96), rgba(4,5,7,.15)),
-        url("https://images.unsplash.com/photo-1511512578047-dfb367046420?auto=format&fit=crop&w=1400&q=80");
-      background-size:cover;
-      background-position:center;
-    }
-
-    .media:nth-child(3){
-      background:
-        linear-gradient(to top, rgba(4,5,7,.96), rgba(4,5,7,.15)),
-        url("https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=1400&q=80");
-      background-size:cover;
-      background-position:center;
-    }
-
-    .media:first-child{
-      grid-row:1 / 3;
-    }
-
-    .media:hover{
-      transform:scale(1.015);
-      border-color:rgba(213,173,85,.35);
-    }
-
-    .media h3{
-      font-family:"Teko",sans-serif;
-      font-size:50px;
-      line-height:.9;
-      color:var(--gold);
-      text-transform:uppercase;
-      text-shadow:0 5px 16px rgba(0,0,0,.35);
-    }
-
-    /* FOOTER */
-    footer{
-      margin-top:120px;
-      border-top:1px solid rgba(213,173,85,.15);
-      text-align:center;
-      padding:50px 20px;
-      color:#777f89;
-      letter-spacing:2px;
-    }
-
-    footer strong{
-      display:block;
-      color:var(--gold);
-      font-family:"Black Ops One",sans-serif;
-      font-size:21px;
-      margin-bottom:14px;
-    }
-
-    /* REVEAL */
-    .reveal{
-      opacity:0;
-      transform:translateY(42px);
-      transition:opacity .8s ease, transform .8s ease;
-    }
-
-    .reveal.visible{
-      opacity:1;
-      transform:translateY(0);
-    }
-
-    /* RESPONSIVE */
-    @media (max-width: 900px){
-      .menu{
-        display:none;
-      }
-
-      .games{
-        grid-template-columns:1fr;
-      }
-
-      .stats{
-        grid-template-columns:1fr 1fr;
-      }
-
-      .media-grid{
-        grid-template-columns:1fr;
-        grid-template-rows:auto;
-      }
-
-      .media,
-      .media:first-child{
-        grid-row:auto;
-        min-height:250px;
-      }
-
-      .hero h1{
-        font-size:68px;
-      }
-
-      .tagline{
-        font-size:25px;
-      }
-
-      .hero-text{
-        font-size:19px;
-      }
-
-      .final-score{
-        font-size:78px;
-      }
-
-      .match{
-        font-size:58px;
-      }
-    }
-
-    @media (max-width: 600px){
-      .hero-content{
-        padding:120px 20px 90px;
-      }
-
-      main{
-        padding:20px 20px 90px;
-      }
-
-      .title{
-        font-size:42px;
-      }
-
-      .stats{
-        grid-template-columns:1fr;
-      }
-
-      .player{
-        min-width:285px;
-      }
-
-      .tagline{
-        font-size:22px;
-      }
-
-      .hero-panel p{
-        font-size:20px;
-      }
-    }
-  </style>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
+
+<title>
+Home of the Guardians | ESG Football
+</title>
+
+
+<!-- FONTS -->
+
+<link rel="preconnect"
+href="https://fonts.googleapis.com">
+
+<link rel="preconnect"
+href="https://fonts.gstatic.com"
+crossorigin>
+
+<link
+href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;500;600;700;800&family=Bungee&display=swap"
+rel="stylesheet">
+
+
+<style>
+
+
+/* =========================================
+   COLORS
+========================================= */
+
+:root{
+
+--black:#030303;
+
+--dark:#070809;
+
+--dark2:#0d0f12;
+
+--gold:#d9ad4c;
+
+--gold-light:#f1ce76;
+
+--royal:#1854e8;
+
+--royal-dark:#081d62;
+
+--white:#f3f3f0;
+
+--gray:#9a9da3;
+
+}
+
+
+/* =========================================
+   BASE
+========================================= */
+
+*{
+
+margin:0;
+
+padding:0;
+
+box-sizing:border-box;
+
+}
+
+
+html{
+
+scroll-behavior:smooth;
+
+}
+
+
+body{
+
+background:
+
+radial-gradient(
+circle at 70% 15%,
+rgba(24,84,232,.09),
+transparent 25%
+),
+
+#030303;
+
+color:white;
+
+font-family:
+"Barlow Condensed",
+sans-serif;
+
+overflow-x:hidden;
+
+}
+
+
+a{
+
+text-decoration:none;
+
+color:inherit;
+
+}
+
+
+/* =========================================
+   GLOBAL GRIT
+========================================= */
+
+body::before{
+
+content:"";
+
+position:fixed;
+
+inset:0;
+
+z-index:9999;
+
+pointer-events:none;
+
+opacity:.06;
+
+background:
+
+repeating-linear-gradient(
+0deg,
+rgba(255,255,255,.08) 0px,
+rgba(255,255,255,.08) 1px,
+transparent 1px,
+transparent 4px
+);
+
+mix-blend-mode:overlay;
+
+}
+
+
+/* =========================================
+   DISPLAY FONT
+========================================= */
+
+.display-font{
+
+font-family:"Bungee",sans-serif;
+
+text-transform:uppercase;
+
+}
+
+
+/* =========================================
+   3D GOLD / BLUE TEXT
+========================================= */
+
+.three-d{
+
+font-family:"Bungee",sans-serif;
+
+color:var(--gold-light);
+
+-webkit-text-stroke:
+3px var(--royal);
+
+paint-order:
+stroke fill;
+
+text-shadow:
+
+3px 3px 0 #08206d,
+
+6px 6px 0 #030818,
+
+9px 9px 0 #000,
+
+0 0 20px
+rgba(24,84,232,.25),
+
+0 0 28px
+rgba(217,173,76,.12);
+
+}
+
+
+/* =========================================
+   NAVIGATION
+========================================= */
+
+header{
+
+position:fixed;
+
+top:0;
+
+left:0;
+
+width:100%;
+
+z-index:1000;
+
+background:
+rgba(2,2,3,.72);
+
+backdrop-filter:
+blur(10px);
+
+border-bottom:
+2px solid rgba(24,84,232,.25);
+
+}
+
+
+.nav{
+
+max-width:1320px;
+
+margin:auto;
+
+padding:
+15px 25px;
+
+display:flex;
+
+justify-content:
+space-between;
+
+align-items:center;
+
+}
+
+
+.brand{
+
+font-family:"Bungee";
+
+font-size:18px;
+
+color:var(--gold);
+
+-webkit-text-stroke:
+1px var(--royal);
+
+text-shadow:
+3px 3px 0 black;
+
+}
+
+
+.menu{
+
+display:flex;
+
+gap:28px;
+
+}
+
+
+.menu a{
+
+font-family:"Bungee";
+
+font-size:11px;
+
+letter-spacing:1px;
+
+transition:.2s;
+
+}
+
+
+.menu a:hover{
+
+color:var(--gold);
+
+transform:
+rotate(-2deg);
+
+}
+
+
+/* =========================================
+   HERO
+========================================= */
+
+.hero{
+
+min-height:100vh;
+
+position:relative;
+
+overflow:hidden;
+
+display:flex;
+
+align-items:center;
+
+background:
+
+linear-gradient(
+to bottom,
+rgba(0,0,0,.15),
+rgba(0,0,0,.8)
+),
+
+linear-gradient(
+125deg,
+#090b10,
+#020202 55%,
+#0b101b
+);
+
+}
+
+
+/* optional real background later */
+
+.hero-photo{
+
+position:absolute;
+
+inset:0;
+
+background:
+
+linear-gradient(
+90deg,
+rgba(0,0,0,.88),
+rgba(0,0,0,.37),
+rgba(0,0,0,.85)
+),
+
+url("images/nyc-street.jpg");
+
+background-size:cover;
+
+background-position:center;
+
+opacity:.7;
+
+}
+
+
+/* =========================================
+   STREET PERSPECTIVE
+========================================= */
+
+.street{
+
+position:absolute;
+
+bottom:-8%;
+
+left:10%;
+
+width:80%;
+
+height:55%;
+
+background:
+
+linear-gradient(
+90deg,
+transparent,
+rgba(217,173,76,.08),
+transparent
+),
+
+linear-gradient(
+to bottom,
+#141518,
+#030303
+);
+
+clip-path:
+polygon(
+38% 0,
+62% 0,
+100% 100%,
+0 100%
+);
+
+opacity:.65;
+
+}
+
+
+/* wet pavement lines */
+
+.street::before{
+
+content:"";
+
+position:absolute;
+
+inset:0;
+
+background:
+
+repeating-linear-gradient(
+90deg,
+transparent 0,
+transparent 18%,
+rgba(217,173,76,.08) 19%,
+transparent 20%
+);
+
+filter:blur(5px);
+
+}
+
+
+/* gold road reflection */
+
+.street::after{
+
+content:"";
+
+position:absolute;
+
+left:46%;
+
+top:0;
+
+width:8%;
+
+height:100%;
+
+background:
+
+linear-gradient(
+to bottom,
+rgba(217,173,76,.02),
+rgba(217,173,76,.2),
+transparent
+);
+
+filter:blur(15px);
+
+}
+
+
+/* =========================================
+   BUILDINGS
+========================================= */
+
+.building-left{
+
+position:absolute;
+
+bottom:0;
+
+left:-2%;
+
+width:33%;
+
+height:80%;
+
+background:
+
+linear-gradient(
+90deg,
+#050506,
+#111318
+);
+
+clip-path:
+polygon(
+0 5%,
+88% 0,
+100% 100%,
+0 100%
+);
+
+opacity:.9;
+
+}
+
+
+.building-right{
+
+position:absolute;
+
+bottom:0;
+
+right:-2%;
+
+width:34%;
+
+height:77%;
+
+background:
+
+linear-gradient(
+270deg,
+#050506,
+#111318
+);
+
+clip-path:
+polygon(
+12% 0,
+100% 6%,
+100% 100%,
+0 100%
+);
+
+opacity:.9;
+
+}
+
+
+/* brick texture */
+
+.brick{
+
+position:absolute;
+
+inset:0;
+
+opacity:.12;
+
+background:
+
+repeating-linear-gradient(
+0deg,
+transparent,
+transparent 27px,
+rgba(255,255,255,.25) 28px
+),
+
+repeating-linear-gradient(
+90deg,
+transparent,
+transparent 55px,
+rgba(255,255,255,.18) 56px
+);
+
+}
+
+
+/* =========================================
+   STREET SIGNS
+========================================= */
+
+.street-sign{
+
+position:absolute;
+
+right:8%;
+
+top:24%;
+
+z-index:4;
+
+background:#071541;
+
+border:
+3px solid white;
+
+padding:
+10px 18px;
+
+font-family:"Bungee";
+
+font-size:15px;
+
+transform:
+rotate(4deg);
+
+box-shadow:
+7px 8px 0 black;
+
+}
+
+
+.street-sign span{
+
+color:var(--gold);
+
+}
+
+
+/* =========================================
+   STREET LIGHT
+========================================= */
+
+.light-pole{
+
+position:absolute;
+
+right:20%;
+
+top:13%;
+
+width:7px;
+
+height:58%;
+
+background:#17191b;
+
+z-index:3;
+
+}
+
+
+.light-head{
+
+position:absolute;
+
+top:0;
+
+left:-90px;
+
+width:95px;
+
+height:7px;
+
+background:#17191b;
+
+}
+
+
+.light-glow{
+
+position:absolute;
+
+left:-112px;
+
+top:-20px;
+
+width:70px;
+
+height:70px;
+
+border-radius:50%;
+
+background:
+
+radial-gradient(
+circle,
+rgba(255,220,135,.95),
+rgba(217,173,76,.27) 30%,
+transparent 70%
+);
+
+filter:blur(3px);
+
+}
+
+
+/* =========================================
+   CHAIN LINK
+========================================= */
+
+.chain{
+
+position:absolute;
+
+right:-4%;
+
+bottom:-5%;
+
+width:46%;
+
+height:60%;
+
+opacity:.12;
+
+transform:
+rotate(-4deg);
+
+background:
+
+repeating-linear-gradient(
+45deg,
+transparent 0,
+transparent 17px,
+#fff 18px,
+transparent 19px
+),
+
+repeating-linear-gradient(
+-45deg,
+transparent 0,
+transparent 17px,
+#fff 18px,
+transparent 19px
+);
+
+}
+
+
+/* =========================================
+   HERO TEXT
+========================================= */
+
+.hero-inner{
+
+position:relative;
+
+z-index:10;
+
+width:100%;
+
+max-width:1320px;
+
+margin:auto;
+
+padding:
+130px 25px
+100px;
+
+}
+
+
+.home-of{
+
+font-family:"Bungee";
+
+font-size:
+clamp(
+23px,
+3vw,
+44px
+);
+
+color:white;
+
+letter-spacing:3px;
+
+transform:
+rotate(-2deg);
+
+display:inline-block;
+
+margin-bottom:8px;
+
+text-shadow:
+5px 5px 0 black;
+
+}
+
+
+.hero h1{
+
+font-size:
+
+clamp(
+60px,
+10vw,
+142px
+);
+
+line-height:.91;
+
+max-width:1000px;
+
+transform:
+rotate(-1deg);
+
+}
+
+
+.hero-sub{
+
+margin-top:30px;
+
+max-width:600px;
+
+font-size:25px;
+
+font-weight:700;
+
+text-transform:uppercase;
+
+letter-spacing:2px;
+
+color:#ddd;
+
+}
+
+
+.hero-sub strong{
+
+color:var(--gold);
+
+}
+
+
+/* =========================================
+   BUTTONS
+========================================= */
+
+.buttons{
+
+margin-top:32px;
+
+display:flex;
+
+gap:15px;
+
+flex-wrap:wrap;
+
+}
+
+
+.button{
+
+font-family:"Bungee";
+
+font-size:12px;
+
+padding:
+14px 22px;
+
+border:
+3px solid var(--royal);
+
+background:#060606;
+
+color:var(--gold);
+
+box-shadow:
+
+5px 5px 0
+var(--royal-dark),
+
+8px 8px 0
+black;
+
+transition:.2s;
+
+}
+
+
+.button:hover{
+
+transform:
+translate(-3px,-3px)
+rotate(-1deg);
+
+box-shadow:
+
+8px 8px 0
+var(--royal-dark),
+
+12px 12px 0
+black;
+
+}
+
+
+.button.primary{
+
+background:var(--gold);
+
+color:black;
+
+}
+
+
+/* =========================================
+   SPRAY TEXT
+========================================= */
+
+.spray{
+
+position:absolute;
+
+right:5%;
+
+bottom:13%;
+
+font-family:"Bungee";
+
+font-size:
+clamp(
+35px,
+6vw,
+80px
+);
+
+color:rgba(24,84,232,.13);
+
+transform:
+rotate(-12deg);
+
+z-index:2;
+
+}
+
+
+/* =========================================
+   MARQUEE
+========================================= */
+
+.ticker{
+
+overflow:hidden;
+
+white-space:nowrap;
+
+background:var(--gold);
+
+color:black;
+
+border-top:
+4px solid var(--royal);
+
+border-bottom:
+4px solid var(--royal);
+
+font-family:"Bungee";
+
+font-size:16px;
+
+padding:10px 0;
+
+transform:
+rotate(-.4deg)
+scale(1.02);
+
+}
+
+
+.ticker-track{
+
+display:inline-block;
+
+min-width:200%;
+
+animation:
+ticker 24s linear infinite;
+
+}
+
+
+@keyframes ticker{
+
+to{
+
+transform:
+translateX(-50%);
+
+}
+
+}
+
+
+/* =========================================
+   MAIN
+========================================= */
+
+main{
+
+max-width:1300px;
+
+margin:auto;
+
+padding:
+20px 25px
+130px;
+
+}
+
+
+section{
+
+position:relative;
+
+margin-top:125px;
+
+}
+
+
+/* =========================================
+   SECTION TITLES
+========================================= */
+
+.kicker{
+
+font-family:"Bungee";
+
+color:var(--royal);
+
+font-size:13px;
+
+margin-bottom:10px;
+
+transform:
+rotate(-1deg);
+
+}
+
+
+.section-title{
+
+font-size:
+
+clamp(
+40px,
+6vw,
+76px
+);
+
+line-height:1;
+
+margin-bottom:42px;
+
+display:inline-block;
+
+transform:
+rotate(-1deg);
+
+}
+
+
+/* =========================================
+   TORN PAPER BACKGROUND
+========================================= */
+
+.poster{
+
+background:
+
+linear-gradient(
+135deg,
+#111317,
+#060607
+);
+
+border:
+
+1px solid
+rgba(255,255,255,.05);
+
+clip-path:
+
+polygon(
+0 2%,
+8% 0,
+17% 2%,
+27% 0,
+40% 2%,
+51% 0,
+65% 2%,
+77% 0,
+90% 2%,
+100% 0,
+98% 97%,
+88% 100%,
+75% 98%,
+61% 100%,
+50% 98%,
+34% 100%,
+22% 98%,
+9% 100%,
+0 97%
+);
+
+}
+
+
+/* =========================================
+   GAME AREA
+========================================= */
+
+.game-layout{
+
+display:grid;
+
+grid-template-columns:
+1.4fr .9fr;
+
+gap:25px;
+
+align-items:center;
+
+}
+
+
+.main-game{
+
+min-height:430px;
+
+padding:38px;
+
+position:relative;
+
+display:flex;
+
+align-items:flex-end;
+
+overflow:hidden;
+
+transform:
+rotate(-1.3deg);
+
+background:
+
+radial-gradient(
+circle at 75% 20%,
+rgba(24,84,232,.18),
+transparent 25%
+),
+
+linear-gradient(
+135deg,
+#15191f,
+#050505
+);
+
+box-shadow:
+15px 17px 0
+rgba(0,0,0,.65);
+
+}
+
+
+.main-game::before{
+
+content:"";
+
+position:absolute;
+
+inset:0;
+
+background:
+
+linear-gradient(
+45deg,
+transparent 45%,
+rgba(217,173,76,.04),
+transparent 55%
+);
+
+}
+
+
+.result{
+
+position:relative;
+
+z-index:2;
+
+}
+
+
+.result-label{
+
+font-family:"Bungee";
+
+color:var(--royal);
+
+font-size:14px;
+
+}
+
+
+.score{
+
+font-family:"Bungee";
+
+font-size:
+clamp(
+75px,
+10vw,
+130px
+);
+
+color:var(--gold);
+
+-webkit-text-stroke:
+2px var(--royal);
+
+text-shadow:
+
+5px 5px 0
+#06144b,
+
+10px 10px 0 black;
+
+line-height:.95;
+
+}
+
+
+.matchup{
+
+font-family:"Bungee";
+
+font-size:25px;
+
+margin-top:15px;
+
+}
+
+
+/* side game posters */
+
+.side-games{
+
+display:grid;
+
+gap:25px;
+
+}
+
+
+.game-note{
+
+padding:30px;
+
+min-height:185px;
+
+position:relative;
+
+background:#090b0e;
+
+border:
+3px solid var(--royal);
+
+box-shadow:
+9px 10px 0
+black;
+
+transition:.25s;
+
+}
+
+
+.game-note:first-child{
+
+transform:
+rotate(2deg);
+
+}
+
+
+.game-note:last-child{
+
+transform:
+rotate(-2deg);
+
+}
+
+
+.game-note:hover{
+
+transform:
+rotate(0deg)
+scale(1.03);
+
+}
+
+
+.game-note span{
+
+color:var(--gold);
+
+font-family:"Bungee";
+
+font-size:12px;
+
+}
+
+
+.game-note h3{
+
+font-family:"Bungee";
+
+font-size:31px;
+
+margin-top:12px;
+
+}
+
+
+/* =========================================
+   ROSTER
+========================================= */
+
+.roster-section{
+
+min-height:680px;
+
+}
+
+
+/* horizontal layered player pile */
+
+.roster{
+
+display:flex;
+
+align-items:flex-end;
+
+padding:
+50px 0
+70px;
+
+overflow-x:auto;
+
+overflow-y:hidden;
+
+}
+
+
+.roster::-webkit-scrollbar{
+
+height:8px;
+
+}
+
+
+.roster::-webkit-scrollbar-thumb{
+
+background:
+var(--royal);
+
+}
+
+
+/* player card */
+
+.player{
+
+position:relative;
+
+flex:
+0 0 310px;
+
+height:460px;
+
+margin-right:-55px;
+
+overflow:hidden;
+
+background:
+
+linear-gradient(
+to top,
+#030303 10%,
+transparent 60%
+),
+
+radial-gradient(
+circle at 55% 30%,
+#283247,
+#070708 60%
+);
+
+border:
+3px solid #191919;
+
+box-shadow:
+18px 20px 30px
+rgba(0,0,0,.6);
+
+transition:
+transform .3s;
+
+}
+
+
+/* irregular card positions */
+
+.player:nth-child(1){
+
+transform:
+rotate(-5deg)
+translateY(15px);
+
+z-index:4;
+
+}
+
+
+.player:nth-child(2){
+
+transform:
+rotate(4deg)
+translateY(-20px);
+
+z-index:3;
+
+}
+
+
+.player:nth-child(3){
+
+transform:
+rotate(-2deg)
+translateY(25px);
+
+z-index:5;
+
+}
+
+
+.player:nth-child(4){
+
+transform:
+rotate(6deg)
+translateY(-5px);
+
+z-index:2;
+
+}
+
+
+.player:hover{
+
+z-index:20;
+
+transform:
+rotate(0deg)
+translateY(-35px)
+scale(1.05);
+
+border-color:
+var(--gold);
+
+}
+
+
+/* optional player images */
+
+.player-photo{
+
+position:absolute;
+
+inset:0;
+
+background:
+
+linear-gradient(
+to top,
+#030303 3%,
+transparent 55%
+),
+
+url("images/som3body.png");
+
+background-size:cover;
+
+background-position:center;
+
+opacity:.95;
+
+}
+
+
+.player.two .player-photo{
+
+background-image:
+
+linear-gradient(
+to top,
+#030303 3%,
+transparent 55%
+),
+
+url("images/player2.png");
+
+}
+
+
+.player.three .player-photo{
+
+background-image:
+
+linear-gradient(
+to top,
+#030303 3%,
+transparent 55%
+),
+
+url("images/player3.png");
+
+}
+
+
+.player.four .player-photo{
+
+background-image:
+
+linear-gradient(
+to top,
+#030303 3%,
+transparent 55%
+),
+
+url("images/player4.png");
+
+}
+
+
+/* fallback abstract shape */
+
+.player-photo::before{
+
+content:"";
+
+position:absolute;
+
+width:160px;
+
+height:300px;
+
+left:50%;
+
+top:90px;
+
+transform:
+translateX(-50%);
+
+background:
+
+linear-gradient(
+#25334f,
+#070708
+);
+
+clip-path:
+
+polygon(
+38% 0,
+62% 0,
+72% 13%,
+88% 25%,
+100% 90%,
+65% 100%,
+35% 100%,
+0 90%,
+12% 25%,
+28% 13%
+);
+
+opacity:.35;
+
+}
+
+
+.jersey-number{
+
+position:absolute;
+
+right:5px;
+
+top:-18px;
+
+font-family:"Bungee";
+
+font-size:125px;
+
+color:
+rgba(217,173,76,.18);
+
+-webkit-text-stroke:
+2px rgba(24,84,232,.25);
+
+}
+
+
+.player-info{
+
+position:absolute;
+
+z-index:4;
+
+left:0;
+
+right:0;
+
+bottom:0;
+
+padding:24px;
+
+background:
+
+linear-gradient(
+transparent,
+rgba(0,0,0,1)
+35%
+);
+
+}
+
+
+.player-info h3{
+
+font-family:"Bungee";
+
+font-size:23px;
+
+color:var(--gold);
+
+-webkit-text-stroke:
+1px var(--royal);
+
+text-shadow:
+3px 3px black;
+
+}
+
+
+.player-info p{
+
+margin-top:7px;
+
+letter-spacing:3px;
+
+font-weight:700;
+
+}
+
+
+/* =========================================
+   SOCIAL ICON STYLE
+========================================= */
+
+.socials{
+
+display:flex;
+
+gap:8px;
+
+margin-top:14px;
+
+flex-wrap:wrap;
+
+}
+
+
+.socials a{
+
+font-family:"Bungee";
+
+font-size:9px;
+
+padding:
+7px 9px;
+
+background:#070707;
+
+border:
+2px solid var(--royal);
+
+color:white;
+
+transform:
+rotate(-2deg);
+
+}
+
+
+.socials a:nth-child(even){
+
+transform:
+rotate(2deg);
+
+}
+
+
+.socials a:hover{
+
+background:var(--gold);
+
+color:black;
+
+}
+
+
+/* =========================================
+   STATS
+========================================= */
+
+.stats-wall{
+
+padding:
+55px 30px;
+
+position:relative;
+
+background:
+
+linear-gradient(
+rgba(8,8,9,.87),
+rgba(5,5,5,.95)
+),
+
+repeating-linear-gradient(
+0deg,
+transparent,
+transparent 25px,
+rgba(255,255,255,.03) 26px
+);
+
+border-left:
+8px solid var(--royal);
+
+box-shadow:
+18px 18px 0 black;
+
+}
+
+
+.stats-wall::before{
+
+content:
+"NYC";
+
+position:absolute;
+
+right:3%;
+
+top:-20px;
+
+font-family:"Bungee";
+
+font-size:
+clamp(
+100px,
+18vw,
+240px
+);
+
+color:
+rgba(24,84,232,.05);
+
+transform:
+rotate(-8deg);
+
+}
+
+
+.stats{
+
+position:relative;
+
+z-index:2;
+
+display:flex;
+
+flex-wrap:wrap;
+
+gap:15px;
+
+}
+
+
+.stat{
+
+min-width:180px;
+
+flex:1;
+
+padding:
+25px 18px;
+
+background:
+rgba(0,0,0,.45);
+
+border:
+2px solid
+rgba(217,173,76,.22);
+
+transform:
+rotate(-2deg);
+
+}
+
+
+.stat:nth-child(even){
+
+transform:
+rotate(2deg);
+
+}
+
+
+.stat-value{
+
+font-family:"Bungee";
+
+font-size:52px;
+
+color:var(--gold);
+
+-webkit-text-stroke:
+2px var(--royal);
+
+text-shadow:
+5px 5px 0 black;
+
+}
+
+
+.stat-name{
+
+text-transform:uppercase;
+
+letter-spacing:2px;
+
+color:#bbb;
+
+font-weight:700;
+
+margin-top:8px;
+
+}
+
+
+/* =========================================
+   MEDIA WALL
+========================================= */
+
+.media-wall{
+
+display:grid;
+
+grid-template-columns:
+1.5fr 1fr 1fr;
+
+gap:0;
+
+padding:
+30px 15px;
+
+}
+
+
+.media-card{
+
+min-height:330px;
+
+padding:25px;
+
+position:relative;
+
+display:flex;
+
+align-items:flex-end;
+
+background:
+
+radial-gradient(
+circle at 70% 20%,
+rgba(24,84,232,.25),
+transparent 25%
+),
+
+linear-gradient(
+135deg,
+#1a1d24,
+#040404
+);
+
+border:
+3px solid #181818;
+
+box-shadow:
+12px 13px 0 black;
+
+}
+
+
+.media-card:nth-child(1){
+
+transform:
+rotate(-3deg)
+translateX(20px);
+
+z-index:3;
+
+}
+
+
+.media-card:nth-child(2){
+
+transform:
+rotate(4deg)
+translateY(-20px);
+
+z-index:4;
+
+}
+
+
+.media-card:nth-child(3){
+
+transform:
+rotate(-2deg)
+translateX(-20px);
+
+z-index:2;
+
+}
+
+
+.media-card:hover{
+
+z-index:20;
+
+transform:
+rotate(0deg)
+scale(1.04);
+
+border-color:
+var(--royal);
+
+}
+
+
+.media-card h3{
+
+font-family:"Bungee";
+
+color:var(--gold);
+
+font-size:24px;
+
+-webkit-text-stroke:
+1px var(--royal);
+
+text-shadow:
+4px 4px black;
+
+}
+
+
+/* =========================================
+   FOOTER
+========================================= */
+
+footer{
+
+margin-top:120px;
+
+padding:
+60px 20px;
+
+text-align:center;
+
+border-top:
+4px solid var(--royal);
+
+background:#020202;
+
+}
+
+
+.footer-title{
+
+font-size:
+clamp(
+32px,
+5vw,
+60px
+);
+
+}
+
+
+/* =========================================
+   ANIMATION
+========================================= */
+
+.reveal{
+
+opacity:0;
+
+transform:
+translateY(45px);
+
+transition:
+opacity .8s ease,
+transform .8s ease;
+
+}
+
+
+.reveal.show{
+
+opacity:1;
+
+transform:
+translateY(0);
+
+}
+
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media(
+max-width:850px
+){
+
+.menu{
+
+display:none;
+
+}
+
+
+.hero h1{
+
+font-size:58px;
+
+-webkit-text-stroke:
+2px var(--royal);
+
+}
+
+
+.home-of{
+
+font-size:23px;
+
+}
+
+
+.street-sign{
+
+display:none;
+
+}
+
+
+.light-pole{
+
+right:8%;
+
+opacity:.6;
+
+}
+
+
+.building-left,
+.building-right{
+
+width:45%;
+
+}
+
+
+.game-layout{
+
+grid-template-columns:1fr;
+
+}
+
+
+.roster{
+
+padding-left:20px;
+
+}
+
+
+.player{
+
+flex-basis:270px;
+
+height:420px;
+
+margin-right:-35px;
+
+}
+
+
+.media-wall{
+
+grid-template-columns:1fr;
+
+gap:20px;
+
+}
+
+
+.media-card:nth-child(1),
+.media-card:nth-child(2),
+.media-card:nth-child(3){
+
+transform:none;
+
+}
+
+
+.stats{
+
+display:grid;
+
+grid-template-columns:
+1fr 1fr;
+
+}
+
+}
+
+
+@media(
+max-width:520px
+){
+
+.hero-inner{
+
+padding:
+120px 20px
+90px;
+
+}
+
+
+main{
+
+padding-left:20px;
+
+padding-right:20px;
+
+}
+
+
+.hero h1{
+
+font-size:49px;
+
+}
+
+
+.hero-sub{
+
+font-size:20px;
+
+}
+
+
+.stats{
+
+grid-template-columns:1fr;
+
+}
+
+
+.score{
+
+font-size:68px;
+
+}
+
+
+.section-title{
+
+font-size:38px;
+
+}
+
+}
+
+
+</style>
+
 </head>
+
+
 <body>
 
-  <header>
-    <div class="nav">
-      <div class="brand">NY <span>Guardians</span></div>
 
-      <div class="menu">
-        <a href="#home">Home</a>
-        <a href="#schedule">Schedule</a>
-        <a href="#roster">Roster</a>
-        <a href="#stats">Stats</a>
-        <a href="#media">Media</a>
-      </div>
-    </div>
-  </header>
+<!-- ======================================
+NAV
+====================================== -->
 
-  <section class="hero" id="home">
-    <div class="hero-overlay"></div>
-    <div class="hero-glow"></div>
-    <div class="hero-fog"></div>
+<header>
 
-    <div class="hero-content">
-      <div class="eyebrow">Brooklyn • New York City • Night Mode</div>
+<div class="nav">
 
-      <h1>
-        New York
-        <span>Guardians</span>
-      </h1>
+<div class="brand">
+HOME OF THE GUARDIANS
+</div>
 
-      <div class="tagline">Built Under City Lights • Protect The City</div>
 
-      <div class="hero-text">
-        A darker, layered New York home for the Guardians — built with real city-night energy, gold-lit atmosphere, and a sharper presentation for roster, stats, schedule, and media.
-      </div>
+<div class="menu">
 
-      <div class="hero-buttons">
-        <a href="#roster" class="btn primary">Meet The Team</a>
-        <a href="#schedule" class="btn">View Schedule</a>
-      </div>
+<a href="#home">
+Home
+</a>
 
-      <div class="hero-panel">
-        <small>Team Identity</small>
-        <p>Brooklyn grit. Night lights. Gold pressure.</p>
-        <span>New York Guardians • ESG Football</span>
-      </div>
-    </div>
-  </section>
+<a href="#schedule">
+Schedule
+</a>
 
-  <div class="marquee">
-    <div>
-      NEW YORK GUARDIANS • ESG FOOTBALL • PROTECT THE CITY • BROOKLYN NIGHTS • NEW YORK GUARDIANS • ESG FOOTBALL • PROTECT THE CITY • BROOKLYN NIGHTS •
-    </div>
-  </div>
+<a href="#roster">
+Roster
+</a>
 
-  <main>
+<a href="#stats">
+Stats
+</a>
 
-    <section id="schedule" class="reveal">
-      <div class="mini-title">Under The Lights</div>
-      <h2 class="title">Game Day</h2>
+<a href="#media">
+Media
+</a>
 
-      <div class="games">
-        <div class="game-main glass">
-          <div class="final-score">28–0</div>
+</div>
 
-          <div class="match">
-            <strong>Guardians</strong><br>
-            vs Tritons
-          </div>
+</div>
 
-          <p>New York • Final</p>
-        </div>
+</header>
 
-        <div class="side-games">
-          <div class="small-game glass">
-            <span>Next Matchup</span>
-            <h3>Guardians vs TBD</h3>
-            <p>Date & time coming soon</p>
-          </div>
 
-          <div class="small-game glass">
-            <span>Season Record</span>
-            <h3>0 — 0</h3>
-            <p>New season. New city to protect.</p>
-          </div>
-        </div>
-      </div>
-    </section>
 
-    <section id="roster" class="reveal">
-      <div class="mini-title">The Ones Wearing The Shield</div>
-      <h2 class="title">Guardians Roster</h2>
+<!-- ======================================
+HERO
+====================================== -->
 
-      <div class="roster">
-        <div class="player glass">
-          <div class="player-number">11</div>
-          <div class="player-info">
-            <h3>Som3body_white</h3>
-            <p>WR / DB</p>
-            <div class="socials">
-              <a href="#">Twitch</a>
-              <a href="#">YouTube</a>
-              <a href="#">X</a>
-              <a href="#">Instagram</a>
-            </div>
-          </div>
-        </div>
+<section
+class="hero"
+id="home">
 
-        <div class="player glass">
-          <div class="player-number">00</div>
-          <div class="player-info">
-            <h3>Player Two</h3>
-            <p>Position</p>
-            <div class="socials">
-              <a href="#">Twitch</a>
-              <a href="#">X</a>
-            </div>
-          </div>
-        </div>
 
-        <div class="player glass">
-          <div class="player-number">00</div>
-          <div class="player-info">
-            <h3>Player Three</h3>
-            <p>Position</p>
-            <div class="socials">
-              <a href="#">Twitch</a>
-              <a href="#">X</a>
-            </div>
-          </div>
-        </div>
+<div class="hero-photo">
+</div>
 
-        <div class="player glass">
-          <div class="player-number">00</div>
-          <div class="player-info">
-            <h3>Player Four</h3>
-            <p>Position</p>
-            <div class="socials">
-              <a href="#">Twitch</a>
-              <a href="#">X</a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
 
-    <section id="stats" class="reveal">
-      <div class="mini-title">Numbers From The City</div>
-      <h2 class="title">Som3body_white</h2>
+<div class="street">
+</div>
 
-      <div class="stats">
-        <div class="stat">
-          <div class="stat-value" data-target="10">0</div>
-          <div class="stat-label">Receptions</div>
-        </div>
 
-        <div class="stat">
-          <div class="stat-value" data-target="410">0</div>
-          <div class="stat-label">Receiving Yards</div>
-        </div>
+<div class="building-left">
 
-        <div class="stat">
-          <div class="stat-value" data-target="7">0</div>
-          <div class="stat-label">Touchdowns</div>
-        </div>
+<div class="brick">
+</div>
 
-        <div class="stat">
-          <div class="stat-value" data-target="3">0</div>
-          <div class="stat-label">Interceptions</div>
-        </div>
-      </div>
-    </section>
+</div>
 
-    <section id="media" class="reveal">
-      <div class="mini-title">Straight From New York</div>
-      <h2 class="title">Guardians Media</h2>
 
-      <div class="media-grid">
-        <div class="media glass">
-          <h3>Game Highlights</h3>
-        </div>
+<div class="building-right">
 
-        <div class="media glass">
-          <h3>Twitch Clips</h3>
-        </div>
+<div class="brick">
+</div>
 
-        <div class="media glass">
-          <h3>Team Socials</h3>
-        </div>
-      </div>
-    </section>
+</div>
 
-  </main>
 
-  <footer>
-    <strong>New York Guardians</strong>
-    ESG Football • Protect The City
-  </footer>
+<div class="chain">
+</div>
 
-  <script>
-    /* reveal on scroll */
-    const reveals = document.querySelectorAll(".reveal");
 
-    const revealObserver = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        if(entry.isIntersecting){
-          entry.target.classList.add("visible");
-        }
-      });
-    }, { threshold: 0.15 });
+<div class="light-pole">
 
-    reveals.forEach((el) => revealObserver.observe(el));
+<div class="light-head">
+</div>
 
-    /* animated stat numbers */
-    const counters = document.querySelectorAll(".stat-value");
-    const statsSection = document.querySelector("#stats");
-    let statsStarted = false;
+<div class="light-glow">
+</div>
 
-    const statsObserver = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        if(entry.isIntersecting && !statsStarted){
-          statsStarted = true;
+</div>
 
-          counters.forEach((counter) => {
-            const target = +counter.dataset.target;
-            let value = 0;
-            const step = Math.max(1, Math.ceil(target / 45));
 
-            const update = () => {
-              value += step;
-              if(value > target) value = target;
-              counter.textContent = value;
-              if(value < target){
-                requestAnimationFrame(update);
-              }
-            };
+<div class="street-sign">
 
-            update();
-          });
-        }
-      });
-    }, { threshold: 0.35 });
+BROOKLYN
 
-    statsObserver.observe(statsSection);
-  </script>
+<br>
+
+<span>
+GUARDIANS WAY
+</span>
+
+</div>
+
+
+<div class="spray">
+
+NYC
+
+</div>
+
+
+<div class="hero-inner">
+
+
+<div class="home-of">
+
+HOME OF THE
+
+</div>
+
+
+<h1 class="three-d">
+
+GUARDIANS
+
+</h1>
+
+
+<div class="hero-sub">
+
+NEW YORK CITY
+
+<br>
+
+<strong>
+
+ESG FOOTBALL
+
+</strong>
+
+<br>
+
+PROTECT THE CITY.
+
+</div>
+
+
+<div class="buttons">
+
+<a
+class="button primary"
+href="#roster">
+
+MEET THE GUARDIANS
+
+</a>
+
+
+<a
+class="button"
+href="#schedule">
+
+GAME DAY
+
+</a>
+
+</div>
+
+
+</div>
+
+</section>
+
+
+
+<!-- ======================================
+TICKER
+====================================== -->
+
+<div class="ticker">
+
+<div class="ticker-track">
+
+HOME OF THE GUARDIANS •
+BROOKLYN •
+NEW YORK CITY •
+ESG FOOTBALL •
+PROTECT THE CITY •
+HOME OF THE GUARDIANS •
+BROOKLYN •
+NEW YORK CITY •
+ESG FOOTBALL •
+PROTECT THE CITY •
+
+</div>
+
+</div>
+
+
+
+<main>
+
+
+
+<!-- ======================================
+SCHEDULE
+====================================== -->
+
+<section
+id="schedule"
+class="reveal">
+
+
+<div class="kicker">
+
+// UNDER THE STREETLIGHTS
+
+</div>
+
+
+<h2
+class="section-title three-d">
+
+GAME DAY
+
+</h2>
+
+
+<div class="game-layout">
+
+
+<div class="main-game poster">
+
+
+<div class="result">
+
+
+<div class="result-label">
+
+LATEST RESULT
+
+</div>
+
+
+<div class="score">
+
+28–0
+
+</div>
+
+
+<div class="matchup">
+
+GUARDIANS
+
+<br>
+
+VS TRITONS
+
+</div>
+
+
+</div>
+
+</div>
+
+
+
+<div class="side-games">
+
+
+<div class="game-note">
+
+<span>
+
+NEXT UP
+
+</span>
+
+
+<h3>
+
+GUARDIANS
+
+<br>
+
+VS TBD
+
+</h3>
+
+
+<p>
+
+DATE & TIME COMING SOON
+
+</p>
+
+</div>
+
+
+
+<div class="game-note">
+
+<span>
+
+SEASON RECORD
+
+</span>
+
+
+<h3>
+
+0 — 0
+
+</h3>
+
+
+<p>
+
+THE CITY IS WATCHING.
+
+</p>
+
+</div>
+
+
+</div>
+
+
+</div>
+
+</section>
+
+
+
+<!-- ======================================
+ROSTER
+====================================== -->
+
+<section
+id="roster"
+class="roster-section reveal">
+
+
+<div class="kicker">
+
+// WHO WE CAME WITH
+
+</div>
+
+
+<h2
+class="section-title three-d">
+
+THE GUARDIANS
+
+</h2>
+
+
+<div class="roster">
+
+
+<!-- PLAYER 1 -->
+
+<div class="player">
+
+
+<div class="player-photo">
+</div>
+
+
+<div class="jersey-number">
+
+11
+
+</div>
+
+
+<div class="player-info">
+
+<h3>
+
+SOM3BODY_WHITE
+
+</h3>
+
+
+<p>
+
+WR / DB
+
+</p>
+
+
+<div class="socials">
+
+<a href="#">
+TWITCH
+</a>
+
+<a href="#">
+YOUTUBE
+</a>
+
+<a href="#">
+X
+</a>
+
+<a href="#">
+IG
+</a>
+
+</div>
+
+
+</div>
+
+</div>
+
+
+
+<!-- PLAYER 2 -->
+
+<div class="player two">
+
+
+<div class="player-photo">
+</div>
+
+
+<div class="jersey-number">
+
+00
+
+</div>
+
+
+<div class="player-info">
+
+<h3>
+
+PLAYER TWO
+
+</h3>
+
+
+<p>
+
+POSITION
+
+</p>
+
+
+<div class="socials">
+
+<a href="#">
+TWITCH
+</a>
+
+<a href="#">
+X
+</a>
+
+</div>
+
+
+</div>
+
+</div>
+
+
+
+<!-- PLAYER 3 -->
+
+<div class="player three">
+
+
+<div class="player-photo">
+</div>
+
+
+<div class="jersey-number">
+
+00
+
+</div>
+
+
+<div class="player-info">
+
+<h3>
+
+PLAYER THREE
+
+</h3>
+
+
+<p>
+
+POSITION
+
+</p>
+
+</div>
+
+</div>
+
+
+
+<!-- PLAYER 4 -->
+
+<div class="player four">
+
+
+<div class="player-photo">
+</div>
+
+
+<div class="jersey-number">
+
+00
+
+</div>
+
+
+<div class="player-info">
+
+<h3>
+
+PLAYER FOUR
+
+</h3>
+
+
+<p>
+
+POSITION
+
+</p>
+
+</div>
+
+</div>
+
+
+</div>
+
+</section>
+
+
+
+<!-- ======================================
+STATS
+====================================== -->
+
+<section
+id="stats"
+class="reveal">
+
+
+<div class="kicker">
+
+// NUMBERS ON THE WALL
+
+</div>
+
+
+<h2
+class="section-title three-d">
+
+STATS
+
+</h2>
+
+
+<div class="stats-wall">
+
+
+<div class="stats">
+
+
+<div class="stat">
+
+<div
+class="stat-value counter"
+data-target="10">
+
+0
+
+</div>
+
+<div class="stat-name">
+
+RECEPTIONS
+
+</div>
+
+</div>
+
+
+
+<div class="stat">
+
+<div
+class="stat-value counter"
+data-target="410">
+
+0
+
+</div>
+
+<div class="stat-name">
+
+RECEIVING YARDS
+
+</div>
+
+</div>
+
+
+
+<div class="stat">
+
+<div
+class="stat-value counter"
+data-target="7">
+
+0
+
+</div>
+
+<div class="stat-name">
+
+TOUCHDOWNS
+
+</div>
+
+</div>
+
+
+
+<div class="stat">
+
+<div
+class="stat-value counter"
+data-target="3">
+
+0
+
+</div>
+
+<div class="stat-name">
+
+INTERCEPTIONS
+
+</div>
+
+</div>
+
+
+</div>
+
+</div>
+
+</section>
+
+
+
+<!-- ======================================
+MEDIA
+====================================== -->
+
+<section
+id="media"
+class="reveal">
+
+
+<div class="kicker">
+
+// FROM THE BLOCK
+
+</div>
+
+
+<h2
+class="section-title three-d">
+
+MEDIA
+
+</h2>
+
+
+<div class="media-wall">
+
+
+<div class="media-card">
+
+<h3>
+
+GAME
+<br>
+HIGHLIGHTS
+
+</h3>
+
+</div>
+
+
+
+<div class="media-card">
+
+<h3>
+
+TWITCH
+<br>
+CLIPS
+
+</h3>
+
+</div>
+
+
+
+<div class="media-card">
+
+<h3>
+
+TEAM
+<br>
+SOCIALS
+
+</h3>
+
+</div>
+
+
+</div>
+
+</section>
+
+
+</main>
+
+
+
+<!-- ======================================
+FOOTER
+====================================== -->
+
+<footer>
+
+
+<div
+class="footer-title three-d">
+
+HOME OF THE GUARDIANS
+
+</div>
+
+
+<p>
+
+NEW YORK CITY • ESG FOOTBALL • PROTECT THE CITY
+
+</p>
+
+
+</footer>
+
+
+
+<script>
+
+
+/* =========================================
+   SCROLL REVEAL
+========================================= */
+
+const items =
+document.querySelectorAll(".reveal");
+
+
+const observer =
+new IntersectionObserver(
+
+entries => {
+
+entries.forEach(
+
+entry => {
+
+if(
+entry.isIntersecting
+){
+
+entry.target
+.classList
+.add("show");
+
+}
+
+}
+
+);
+
+},
+
+{
+
+threshold:.12
+
+}
+
+);
+
+
+items.forEach(
+
+item => {
+
+observer.observe(item);
+
+}
+
+);
+
+
+
+/* =========================================
+   STAT COUNTERS
+========================================= */
+
+const counters =
+document.querySelectorAll(".counter");
+
+
+const stats =
+document.querySelector("#stats");
+
+
+let counted = false;
+
+
+const statsObserver =
+new IntersectionObserver(
+
+entries => {
+
+entries.forEach(
+
+entry => {
+
+if(
+entry.isIntersecting
+&&
+!counted
+){
+
+counted = true;
+
+
+counters.forEach(
+
+counter => {
+
+const target =
+Number(
+counter.dataset.target
+);
+
+
+let current = 0;
+
+
+const jump =
+Math.max(
+1,
+Math.ceil(
+target / 45
+)
+);
+
+
+function count(){
+
+current += jump;
+
+
+if(
+current >= target
+){
+
+current = target;
+
+}
+
+
+counter.textContent =
+current;
+
+
+if(
+current < target
+){
+
+requestAnimationFrame(
+count
+);
+
+}
+
+}
+
+
+count();
+
+}
+
+);
+
+}
+
+}
+
+);
+
+},
+
+{
+
+threshold:.3
+
+}
+
+);
+
+
+statsObserver.observe(
+stats
+);
+
+
+</script>
+
 
 </body>
+
 </html>
